@@ -528,7 +528,10 @@ local plugin_specs = {
       })
     end,
   },
-   
+  {
+    'glepnir/template.nvim',
+    cmd = {'Template','TemProject'},
+  }
 }
 
 -- configuration for lazy itself.
