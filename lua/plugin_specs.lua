@@ -493,8 +493,9 @@ local plugin_specs = {
   },
   {
     "akinsho/toggleterm.nvim", version = "*", opts = {
-      open_mapping = [[<leader>tt]],
-      direction = 'float'
+      open_mapping = [[<f1>]],
+      direction = 'vertical',
+      size = 100,
     }
   },
   -- Xmake build tool
@@ -506,6 +507,7 @@ local plugin_specs = {
     config = true,
     dependencies = {"MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim"}
   },
+  -- transparent neovim background
   {
     "xiyaowong/transparent.nvim",
     lazy = false,
@@ -515,6 +517,7 @@ local plugin_specs = {
       })
     end,
   },
+  -- Github Copilot
   {
     "github/copilot.vim",
     event = { "BufEnter" },
@@ -528,10 +531,21 @@ local plugin_specs = {
       })
     end,
   },
+  -- file templates
   {
     'glepnir/template.nvim',
     cmd = {'Template','TemProject'},
-  }
+    config = function()
+      require('template').setup {
+        temp_dir = '~/.config/nvim/templates',
+      }
+    end,
+  },
+  -- REPL and Jupyter Notebook alternative for vim
+  {
+    'luk400/vim-jukit',
+    ft = {'jupyter'}
+  } 
 }
 
 -- configuration for lazy itself.
