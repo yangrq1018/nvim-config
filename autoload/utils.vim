@@ -112,9 +112,10 @@ endfunction
 
 
 function! utils#Get_titlestr() abort
-  let l:title_str = ''
+  let l:title_str = 'nvim'
   if g:is_linux
-      let l:title_str = hostname() . '  '
+    let l:title_str = l:title_str . ' '
+    " let l:title_str = hostname() . '  '
   endif
 
   let l:buf_path = expand('%:p:~')
