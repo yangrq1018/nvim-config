@@ -24,6 +24,7 @@
   "gitsigns.nvim": { "branch": "main", "commit": "6ef8c54fb526bf3a0bc4efb0b2fe8e6d9a7daed2" },
   "gruvbox-material": { "branch": "master", "commit": "7f56d9f9c4860df528031539d321a61f6e081dee" },
   "hop.nvim": { "branch": "master", "commit": "df0b5b693ef8c3d414b5b85e4bc11cea99c4958d" },
+  "im-select.nvim": { "branch": "master", "commit": "8cf35fae61dd777a453541e765b8a375270ae356" },
   "indent-blankline.nvim": { "branch": "master", "commit": "9807dab165b2d8ca74ae756fa0494fb26adbee41" },
   "kanagawa.nvim": { "branch": "master", "commit": "c19b9023842697ec92caf72cd3599f7dd7be4456" },
   "lazy.nvim": { "branch": "main", "commit": "96584866b9c5e998cbae300594d0ccfd0c464627" },
@@ -83,6 +84,8 @@
   "vista.vim": { "branch": "master", "commit": "290b815cd5a5ff1fb65a48936633d93e2bf14dbd" },
   "which-key.nvim": { "branch": "main", "commit": "4433e5ec9a507e5097571ed55c02ea9658fb268a" },
   "whitespace.nvim": { "branch": "master", "commit": "f0fc9e9c4ce3f7d2166e9e5a069b64b9ca4a3f15" },
+  "wilder.nvim": { "branch": "master", "commit": "679f348dc90d80ff9ba0e7c470c40a4d038dcecf" },
+  "xmake.nvim": { "branch": "v2", "commit": "edacee5158a6e7bfc9061d1056eedfd77510fe6a" },
   "yanky.nvim": { "branch": "main", "commit": "6bb9ffd3cad4c9876bda54e19d0659de28a4f84f" },
   "zen-mode.nvim": { "branch": "main", "commit": "50e2e2a36cc97847d9ab3b1a3555ba2ef6839b50" }
 }

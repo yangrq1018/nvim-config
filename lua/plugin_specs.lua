@@ -494,14 +494,14 @@ local plugin_specs = {
   {
     "akinsho/toggleterm.nvim", version = "*", opts = {
       open_mapping = [[<f1>]],
-      direction = 'vertical',
-      size = 100,
+      direction = 'float',
+      -- size = 100,
     }
   },
   -- Xmake build tool
   {
-    -- 'yangrq1018/xmake.nvim',
-    dir = "/home/martin/xmake.nvim",
+    'yangrq1018/xmake.nvim',
+    -- dir = "/home/martin/xmake.nvim",
     lazy = true,
     event = "BufReadPost xmake.lua",
     config = true,
@@ -545,7 +545,18 @@ local plugin_specs = {
   {
     'luk400/vim-jukit',
     ft = {'jupyter'}
-  } 
+  },
+  {
+    'keaising/im-select.nvim',
+    ft = {'markdown'},
+    config = function()
+      require('im_select').setup({
+        default_im_select = "1033",
+        set_default_events = {"InsertLeave"},
+        set_previous_events = {"InsertEnter"},
+      })
+    end,
+  }
 }
 
 -- configuration for lazy itself.
