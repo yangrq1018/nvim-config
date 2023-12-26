@@ -556,7 +556,12 @@ local plugin_specs = {
         set_previous_events = {"InsertEnter"},
       })
     end,
-  }
+  },
+  {
+    'VonHeikemen/fine-cmdline.nvim',
+    lazy = false,
+    dependencies = {"MunifTanjim/nui.nvim"}
+  },
 }
 
 -- configuration for lazy itself.

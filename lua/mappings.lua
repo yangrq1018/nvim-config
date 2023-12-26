@@ -232,3 +232,6 @@ end)
 
 -- ToggleTerm select from terminals
 keymap.set("n", "<leader>ts", "<cmd>TermSelect<cr>")
+
+-- Remap ":" to FineCmdLine
+keymap.set('n', '<CR>', '<cmd>FineCmdline<CR>', {noremap = true})
