@@ -499,7 +499,9 @@ local plugin_specs = {
     'yangrq1018/xmake.nvim',
     lazy = true,
     event = "BufReadPost xmake.lua",
-    config = true,
+    config = function()
+      require("config.xmake")
+    end,
     dependencies = {"MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim"}
   },
   -- transparent neovim background
