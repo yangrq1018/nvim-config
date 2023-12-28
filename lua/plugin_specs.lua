@@ -49,13 +49,7 @@ local plugin_specs = {
 
   {
     "nvim-treesitter/nvim-treesitter",
-    enabled = function()
-      if vim.g.is_mac then
-        return true
-      end
-      return false
-    end,
-    event = "VeryLazy",
+    lazy = true,
     build = ":TSUpdate",
     config = function()
       require("config.treesitter")
@@ -132,7 +126,7 @@ local plugin_specs = {
   { "EdenEast/nightfox.nvim", lazy = true },
   { "rebelot/kanagawa.nvim", lazy = true },
   { "catppuccin/nvim", name = "catppuccin", lazy = true },
-  { "olimorris/onedarkpro.nvim", lazy = true },
+  { "yangrq1018/onedarkpro.nvim", lazy = true },
   { "tanvirtin/monokai.nvim", lazy = true },
   { "marko-cerovac/material.nvim", lazy = true },
 
@@ -190,7 +184,7 @@ local plugin_specs = {
   },
 
   -- For Windows and Mac, we can open an URL in the browser. For Linux, it may
-  -- not be possible since we maybe in a server which disables GUI.
+  -- not be possible since we may be in a server which disables GUI.
   {
     "tyru/open-browser.vim",
     enabled = function()
@@ -492,7 +486,9 @@ local plugin_specs = {
     end,
   },
   {
-    "akinsho/toggleterm.nvim", version = "*", opts = {
+    "yangrq1018/toggleterm.nvim",
+    version = "*",
+    opts = {
       open_mapping = [[<f1>]],
       direction = 'float',
       -- size = 100,
@@ -501,7 +497,6 @@ local plugin_specs = {
   -- Xmake build tool
   {
     'yangrq1018/xmake.nvim',
-    -- dir = "/home/martin/xmake.nvim",
     lazy = true,
     event = "BufReadPost xmake.lua",
     config = true,
@@ -559,9 +554,32 @@ local plugin_specs = {
   },
   {
     'VonHeikemen/fine-cmdline.nvim',
-    lazy = false,
     dependencies = {"MunifTanjim/nui.nvim"}
   },
+  {
+    "kdheepak/lazygit.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    },
+  },
+  {
+    "mfussenegger/nvim-dap",
+    config = function()
+      require("config.dap")
+    end,
+  },
+  {
+    "theHamsta/nvim-dap-virtual-text",
+    config = function()
+      require("config.dap-virtual-text")
+    end,
+  },
+  {
+    "rcarriga/nvim-dap-ui",
+    config = function()
+      require("dapui").setup()
+    end,
+  }
 }
 
 -- configuration for lazy itself.

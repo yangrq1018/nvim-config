@@ -167,9 +167,15 @@ let g:neoformat_c_clangformat = {
       \ 'exe': 'clang-format',
       \ 'args': ['--style="{IndentWidth: 4}"']
       \ }
+" You need lua-format executable on $PATH
+let g:neoformat_lua_luaformat = {
+    \ 'exe': 'lua-format',
+    \ 'args': ['--indent-width=2']
+\}
 
 let g:neoformat_enabled_cpp = ['clangformat']
 let g:neoformat_enabled_c = ['clangformat']
+let g:neoformat_enabled_lua = ['luaformat']
 
 """""""""""""""""""""""""vim-markdown settings"""""""""""""""""""
 " Disable header folding

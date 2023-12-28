@@ -235,3 +235,12 @@ keymap.set("n", "<leader>ts", "<cmd>TermSelect<cr>")
 
 -- Remap ":" to FineCmdLine
 keymap.set('n', '<CR>', '<cmd>FineCmdline<CR>', {noremap = true})
+
+-- Lazygit
+keymap.set('n', '<leader>lg', '<cmd>LazyGit<CR>', {noremap = true})
+
+-- Serve hexo (by toggleterm)
+keymap.set('n', '<leader>hs', '<cmd>TermExec cmd="npx hexo s"<CR>')
+
+-- Neoformat
+keymap.set('n', '<leader>nf', '<cmd>Neoformat<CR>', {noremap = true})
