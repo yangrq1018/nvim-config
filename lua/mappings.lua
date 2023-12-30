@@ -237,10 +237,13 @@ keymap.set("n", "<leader>ts", "<cmd>TermSelect<cr>")
 keymap.set('n', '<CR>', '<cmd>FineCmdline<CR>', {noremap = true})
 
 -- Lazygit
-keymap.set('n', '<leader>lg', '<cmd>LazyGit<CR>', {noremap = true})
+keymap.set('n', '<leader>lg', '<cmd>LazyGit<CR>', {noremap = true, desc= "Open LazyGit"})
 
 -- Serve hexo (by toggleterm)
-keymap.set('n', '<leader>hs', '<cmd>TermExec cmd="npx hexo s"<CR>')
+keymap.set('n', '<leader>hs', '<cmd>TermExec cmd="npx hexo s"<CR>', {desc= "Serve hexo blog"})
 
 -- Neoformat
 keymap.set('n', '<leader>nf', '<cmd>Neoformat<CR>', {noremap = true})
+
+keymap.set('n', '<leader>gv', '<cmd>DiffviewOpen<CR>', {desc = "Open Git diff view"})
+keymap.set('n', '<leader>gC', '<cmd>DiffviewClose<CR>', {desc = "Close Git diff view"})
