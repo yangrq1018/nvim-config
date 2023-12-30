@@ -1,9 +1,13 @@
 set commentstring=//\ %s
-set colorcolumn=80
+setlocal colorcolumn=80
 
 " Disable inserting comment leader after hitting o or O or <Enter>
 set formatoptions-=o
 set formatoptions-=r
+
+setlocal expandtab
+setlocal tabstop=4
+setlocal shiftwidth=4
 
 nnoremap <silent> <buffer> <F9> :call <SID>compile_run_cpp()<CR>
 
