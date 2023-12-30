@@ -581,6 +581,10 @@ local plugin_specs = {
     config = function()
       require("dapui").setup()
     end,
+  },
+  {
+    "jiangmiao/auto-pairs",
+    event = { "BufEnter" },
   }
 }
 
