@@ -159,6 +159,7 @@ let g:XkbSwitchEnabled = 1
 
 """""""""""""""""""""""""""""" neoformat settings """""""""""""""""""""""
 let g:neoformat_enabled_python = ['black', 'yapf']
+" clang-format should be on $PATH
 let g:neoformat_cpp_clangformat = {
       \ 'exe': 'clang-format',
       \ 'args': ['--style="{IndentWidth: 4}"']

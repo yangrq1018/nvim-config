@@ -578,13 +578,23 @@ local plugin_specs = {
   },
   {
     "rcarriga/nvim-dap-ui",
-    config = function()
-      require("dapui").setup()
-    end,
+    opts = {},
   },
   {
-    "jiangmiao/auto-pairs",
-    event = { "BufEnter" },
+    'windwp/nvim-autopairs',
+    event = "InsertEnter",
+    opts = {},
+  },
+  {
+    "ziontee113/icon-picker.nvim",
+    dependencies = {
+      "stevearc/dressing.nvim",
+    },
+    config = function()
+      require("icon-picker").setup({
+        disable_legacy_commands = true
+      })
+    end,
   }
 }
 
