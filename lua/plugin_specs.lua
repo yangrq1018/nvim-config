@@ -598,7 +598,7 @@ local plugin_specs = {
     end,
   },
   {
-    'Bekaboo/dropbar.nvim',
+    'yangrq1018/dropbar.nvim',
     dependencies = {
       'nvim-telescope/telescope-fzf-native.nvim'
     },
