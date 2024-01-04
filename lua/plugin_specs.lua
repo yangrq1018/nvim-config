@@ -545,6 +545,11 @@ local plugin_specs = {
   },
   {
     'keaising/im-select.nvim',
+    enabled = function()
+      -- Linux does't need this plugin or im-select.exe
+      -- to switch input method
+      return utils.executable("im-select.exe")
+    end,
     ft = {'markdown'},
     config = function()
       require('im_select').setup({
@@ -603,12 +608,26 @@ local plugin_specs = {
       'nvim-telescope/telescope-fzf-native.nvim'
     },
   },
+  -- git branch viewer
   {
     "rbong/vim-flog",
     lazy = true,
     cmd = { "Flog", "Flogsplit", "Floggit" },
     dependencies = {
       "tpope/vim-fugitive",
+    },
+  },
+  -- super cool code navigation
+  {
+    "folke/flash.nvim",
+    event = "VeryLazy",
+    opts = {},
+    keys = {
+      { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
+      { "S", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
+      { "r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
+      { "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
+      { "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
     },
   },
 }

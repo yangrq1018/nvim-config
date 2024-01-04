@@ -9,6 +9,10 @@ setlocal expandtab
 setlocal tabstop=4
 setlocal shiftwidth=4
 
+setlocal foldmethod=expr
+setlocal foldexpr=nvim_treesitter#foldexpr()
+setlocal foldlevel=1
+
 nnoremap <silent> <buffer> <F9> :call <SID>compile_run_cpp()<CR>
 
 function! s:compile_run_cpp() abort

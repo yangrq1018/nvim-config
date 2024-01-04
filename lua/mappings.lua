@@ -104,7 +104,8 @@ keymap.set("n", "<leader>v", "printf('`[%s`]', getregtype()[0])", {
 })
 
 -- Always use very magic mode for searching
-keymap.set("n", "/", [[/\v]])
+-- Probably not, magic mode search does not integrate with flash.nvim well
+-- keymap.set("n", "/", [[/\v]])
 
 -- Search in selected region
 -- xnoremap / :<C-U>call feedkeys('/\%>'.(line("'<")-1).'l\%<'.(line("'>")+1)."l")<CR>
@@ -245,5 +246,6 @@ keymap.set('n', '<leader>hs', '<cmd>TermExec cmd="npx hexo s"<CR>', {desc= "Serv
 -- Neoformat
 keymap.set('n', '<leader>nf', '<cmd>Neoformat<CR>', {noremap = true})
 
+-- Diffview
 keymap.set('n', '<leader>gv', '<cmd>DiffviewOpen<CR>', {desc = "Open Git diff view"})
 keymap.set('n', '<leader>gC', '<cmd>DiffviewClose<CR>', {desc = "Close Git diff view"})

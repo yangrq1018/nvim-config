@@ -69,6 +69,6 @@ function! AddLineBreak(type, ...) abort
   endfor
 endfunction
 
-setlocal foldlevel=2
+setlocal foldlevel=1
 setlocal foldmethod=expr
 setlocal foldexpr=nvim_treesitter#foldexpr()

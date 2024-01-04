@@ -49,6 +49,9 @@ local core_conf_files = {
   "plugins.vim", -- all the plugins installed and their configurations
   "colorschemes.lua", -- colorscheme settings
 }
+if os_name == "Linux" then
+  table.insert(core_conf_files, "im-switch.lua")
+end
 
 local viml_conf_dir = vim.fn.stdpath("config") .. "/viml_conf"
 -- source all the core config files
