@@ -143,10 +143,9 @@ local plugin_specs = {
 
   {
     "akinsho/bufferline.nvim",
-    -- event = { "BufEnter" },
-    -- ensure loaded before transparent.nvim so bufferline is not transparent
-    lazy = false,
-    priority = 100,
+    -- this must be lazy, else highlighting is wrong
+    lazy = true,
+    event = { "BufEnter" },
     cond = firenvim_not_active,
     config = function()
       require("config.bufferline")
@@ -507,7 +506,8 @@ local plugin_specs = {
   -- transparent neovim background
   {
     "xiyaowong/transparent.nvim",
-    lazy = false,
+    -- ensure loaded atfer bufferline so bufferline is not transparent
+    after = "bufferline",
     config = function()
       require("transparent").setup({
         exclude_groups = {'StatusLine'}
