@@ -39,8 +39,11 @@ cmp.setup {
   },
   completion = {
     keyword_length = 1,
-    completeopt = "menu,noselect",
+    -- removed 'noselect', the first entry is always focused and doc shown
+    completeopt = "menu",
   },
+  -- disable source preselect request (gopls)
+  preselect = cmp.PreselectMode.None,
   view = {
     entries = "custom",
   },
