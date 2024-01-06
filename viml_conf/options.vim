@@ -14,7 +14,9 @@ set updatetime=500  " For CursorHold events
 
 " Clipboard settings, always use clipboard for all delete, yank, change, put
 " operation, see https://stackoverflow.com/q/30691466/6064933
-if !empty(provider#clipboard#Executable())
+" Disable this if terminal flickers on yank/delete
+" See https://github.com/neovim/neovim/issues/12622
+if !empty(provider#clipboard#Executable()) && $XDG_SESSION_TYPE != "wayland"
   set clipboard+=unnamedplus
 endif
 
