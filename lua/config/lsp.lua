@@ -251,6 +251,13 @@ if utils.executable("lua-language-server") then
   }
 end
 
+if utils.executable("gopls") then
+  lspconfig.gopls.setup({
+    on_attach = custom_attach,
+    capabilities = capabilities
+  })
+end
+
 -- Change diagnostic signs.
 fn.sign_define("DiagnosticSignError", { text = '🆇', texthl = "DiagnosticSignError" })
 fn.sign_define("DiagnosticSignWarn", { text = '⚠️', texthl = "DiagnosticSignWarn" })
