@@ -11,7 +11,7 @@ setlocal shiftwidth=4
 
 setlocal foldmethod=expr
 setlocal foldexpr=nvim_treesitter#foldexpr()
-setlocal foldlevel=1
+setlocal foldlevel=99
 
 nnoremap <silent> <buffer> <F9> :call <SID>compile_run_cpp()<CR>
 

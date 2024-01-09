@@ -247,5 +247,10 @@ keymap.set('n', '<leader>hs', '<cmd>TermExec cmd="npx hexo s"<CR>', {desc = "Ser
 keymap.set('n', '<leader>nf', '<cmd>Neoformat<CR>', {noremap = true, desc = "Format file"})
 
 -- Diffview
-keymap.set('n', '<leader>gv', '<cmd>DiffviewOpen<CR>', {desc = "Open Git diff view"})
-keymap.set('n', '<leader>gC', '<cmd>DiffviewClose<CR>', {desc = "Close Git diff view"})
+keymap.set('n', '<leader>gd', '<cmd>DiffviewOpen<CR>', {desc = "Open Git diff view (plugin)"})
+keymap.set('n', '<leader>gD', '<cmd>DiffviewClose<CR>', {desc = "Close Git diff view (plugin)"})
+
+keymap.set('n', '<leader>bd', '<cmd>Bd<CR>', {desc = "Delete buffer and switch to previous"})
+
+keymap.set('n', '<leader>tf', '<cmd>Telescope find_files<CR>', {desc = "Telescope find"})
+keymap.set('n', '<leader>tg', '<cmd>Telescope live_grep<CR>', {desc = "Telescope grep"})

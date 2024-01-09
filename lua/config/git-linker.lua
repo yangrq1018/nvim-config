@@ -27,7 +27,7 @@ end, {
   desc = "get git permlink",
 })
 
-keymap.set("n", "<leader>gb", function()
+keymap.set("n", "<leader>gbr", function()
   gitlinker.get_repo_url({
     action_callback = gitlinker.actions.open_in_browser
   })
