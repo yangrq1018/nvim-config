@@ -16,7 +16,7 @@ set updatetime=500  " For CursorHold events
 " operation, see https://stackoverflow.com/q/30691466/6064933
 " Disable this if terminal flickers on yank/delete
 " See https://github.com/neovim/neovim/issues/12622
-if !empty(provider#clipboard#Executable()) && $XDG_SESSION_TYPE != "wayland"
+if !empty(provider#clipboard#Executable())
   set clipboard+=unnamedplus
 endif
 

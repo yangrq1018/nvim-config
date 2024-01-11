@@ -49,7 +49,7 @@ local core_conf_files = {
   "plugins.vim", -- all the plugins installed and their configurations
   "colorschemes.lua", -- colorscheme settings
 }
-if os_name == "Linux" then
+if os_name == "Linux" and vim.fn.executable 'fcitx5-remote' == 1 then
   table.insert(core_conf_files, "im-switch.lua")
 end
 

@@ -174,9 +174,11 @@ let g:neoformat_lua_luaformat = {
     \}
 let g:neoformat_json_jsbeautify = {
     \ 'exe': 'js-beautify',
+    \ 'args': ['-s=2']
     \}
 let g:neoformat_jsonc_jsbeautify = {
     \ 'exe': 'js-beautify',
+    \ 'args': ['-s=2']
     \}
 
 let g:neoformat_enabled_python = ['black', 'yapf']
