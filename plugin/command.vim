@@ -49,5 +49,3 @@ endfunction
 " json format
 command! -range JSONFormat <line1>,<line2>!python -m json.tool
 
-" close buffer without quiting
-command Bd bp|bd#
