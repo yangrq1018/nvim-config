@@ -168,6 +168,7 @@ let g:neoformat_c_clangformat = {
       \ 'args': ['--style="{IndentWidth: 4}"']
       \ }
 " You need lua-format executable on $PATH
+" for arch: yay -S lua-format or yay -S lua-format-git
 let g:neoformat_lua_luaformat = {
     \ 'exe': 'lua-format',
     \ 'args': ['--indent-width=2']
