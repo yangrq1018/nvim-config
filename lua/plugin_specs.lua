@@ -584,7 +584,10 @@ local plugin_specs = {
   },
   {
     "rcarriga/nvim-dap-ui",
-    opts = {},
+    dependencies = {"mfussenegger/nvim-dap"},
+    config = function()
+      require("config.dap-ui")
+    end,
   },
   {
     'windwp/nvim-autopairs',
