@@ -177,4 +177,3 @@ set diffopt+=linematch:60
 set nowrap  " do no wrap
 set noruler
 
-let g:markdown_folding = 1

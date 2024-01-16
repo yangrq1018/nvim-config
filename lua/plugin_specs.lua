@@ -572,6 +572,7 @@ local plugin_specs = {
   },
   {
     "theHamsta/nvim-dap-virtual-text",
+    dependencies = {"nvim-treesitter/nvim-treesitter"},
     config = function()
       require("config.dap-virtual-text")
     end,
@@ -595,7 +596,21 @@ local plugin_specs = {
         disable_legacy_commands = true
       })
     end,
-  }
+  },
+  {
+    'Bekaboo/dropbar.nvim',
+    dependencies = {
+      'nvim-telescope/telescope-fzf-native.nvim'
+    },
+  },
+  {
+    "rbong/vim-flog",
+    lazy = true,
+    cmd = { "Flog", "Flogsplit", "Floggit" },
+    dependencies = {
+      "tpope/vim-fugitive",
+    },
+  },
 }
 
 -- configuration for lazy itself.
