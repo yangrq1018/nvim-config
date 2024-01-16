@@ -107,7 +107,7 @@ let g:Lf_PopupColorscheme = 'gruvbox_material'
 
 " Change keybinding in LeaderF prompt mode, use <Up> and <Down> to navigate
 " items.
-let g:Lf_CommandMap = {'<C-K>': ['<Up>'], '<C-J>': ['<Down>']}
+" let g:Lf_CommandMap = {'<C-K>': ['<Up>'], '<C-J>': ['<Down>']}
 
 " do not preview results, it will add the file to buffer list
 let g:Lf_PreviewResult = {
@@ -410,13 +410,13 @@ function! s:wilder_init() abort
     let l:hl = wilder#make_hl('WilderAccent', 'Pmenu', [{}, {}, {'foreground': '#f4468f'}])
     call wilder#set_option('renderer', wilder#popupmenu_renderer({
           \ 'highlighter': wilder#basic_highlighter(),
-          \ 'max_height': 15,
+          \ 'max_height': 25,
           \ 'highlights': {
           \   'accent': l:hl,
           \ },
           \ 'left': [' ', wilder#popupmenu_devicons(),],
           \ 'right': [' ', wilder#popupmenu_scrollbar(),],
-          \ 'apply_incsearch_fix': 0,
+          \ 'apply_incsearch_fix': 1,
           \ }))
   catch /^Vim\%((\a\+)\)\=:E117/
     echohl Error |echomsg "Wilder.nvim missing"| echohl None

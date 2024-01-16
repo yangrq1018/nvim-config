@@ -2,6 +2,7 @@ require("bufferline").setup {
   -- this is needed only when use catppuccin theme
   -- highlights = require("catppuccin.groups.integrations.bufferline").get(),
   options = {
+    mode = "buffers", -- set to "tabs" to show tabpages instead
     numbers = "buffer_id",
     close_command = "bdelete! %d",
     right_mouse_command = nil,

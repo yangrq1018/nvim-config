@@ -126,7 +126,6 @@ if utils.executable("pylsp") or utils.is_non_base_conda_env() then
     -- TODO: this is a bit too hard coded
     pylsp_path = os.getenv("HOME") .. "/anaconda3/bin/pylsp"
   end
-  print(pylsp_path)
 
   lspconfig.pylsp.setup {
     cmd = {pylsp_path},

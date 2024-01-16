@@ -543,6 +543,7 @@ local plugin_specs = {
     'luk400/vim-jukit',
     ft = {'jupyter'}
   },
+  -- for windows/macos
   {
     'keaising/im-select.nvim',
     enabled = function()
@@ -550,7 +551,7 @@ local plugin_specs = {
       -- to switch input method
       return utils.executable("im-select.exe")
     end,
-    ft = {'markdown'},
+    ft = {'markdown'}, -- lazy-load on markdowns
     config = function()
       require('im_select').setup({
         default_im_select = "1033",
@@ -558,6 +559,17 @@ local plugin_specs = {
         set_previous_events = {"InsertEnter"},
       })
     end,
+  },
+  -- for linux
+  {
+    "yangrq1018/im-switch.nvim",
+    enabled = function()
+      return vim.loop.os_uname().sysname == "Linux" and utils.executable('fcitx5-remote')
+    end,
+    dependencies = {'nvim-treesitter/nvim-treesitter'},
+    opts = {
+      toggle_comment = false,
+    },
   },
   {
     'VonHeikemen/fine-cmdline.nvim',
