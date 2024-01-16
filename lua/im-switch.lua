@@ -86,6 +86,8 @@ vim.api.nvim_create_autocmd("InsertEnter", {
     end
   end
 })
+
+local enable_toggle_im_comment = false -- change to true if you want im switch in comment lines
 vim.api.nvim_create_autocmd("InsertEnter", {
   pattern = switch.code,
   callback = function()
@@ -94,7 +96,7 @@ vim.api.nvim_create_autocmd("InsertEnter", {
     vim.fn.setpos('.', current_pos)
     local previous_node = ts_utils.get_node_at_cursor()
 
-    if previous_node and (previous_node:type() == 'comment' or previous_node:type() == 'comment_content') then
+    if enable_toggle_im_comment and previous_node and (previous_node:type() == 'comment' or previous_node:type() == 'comment_content') then
       Zh()
     end
   end
@@ -110,7 +112,7 @@ vim.api.nvim_create_autocmd("TextChangedI", {
     current_pos[3] = current_pos[3] - 1
     vim.fn.setpos('.', current_pos)
     local previous_node = ts_utils.get_node_at_cursor()
-    if previous_node and (previous_node:type() == 'comment' or previous_node:type() == 'comment_content') then
+    if enable_toggle_im_comment and previous_node and (previous_node:type() == 'comment' or previous_node:type() == 'comment_content') then
       Zh()
     end
     current_pos[3] = current_pos[3] + 1

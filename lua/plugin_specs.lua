@@ -571,6 +571,8 @@ local plugin_specs = {
   },
   {
     "mfussenegger/nvim-dap",
+    dependencies = {"Joakker/lua-json5"},
+    lazy = true,
     config = function()
       require("config.dap")
     end,
@@ -578,6 +580,7 @@ local plugin_specs = {
   {
     "theHamsta/nvim-dap-virtual-text",
     dependencies = {"nvim-treesitter/nvim-treesitter"},
+    keys = { "<leader>dt" }, -- activate dap on breakpoint toggle
     config = function()
       require("config.dap-virtual-text")
     end,
@@ -585,9 +588,15 @@ local plugin_specs = {
   {
     "rcarriga/nvim-dap-ui",
     dependencies = {"mfussenegger/nvim-dap"},
+    keys = { "<leader>dt" },
     config = function()
       require("config.dap-ui")
     end,
+  },
+  {
+    "Joakker/lua-json5",
+    lazy = true,
+    build = "./install.sh",
   },
   {
     'windwp/nvim-autopairs',

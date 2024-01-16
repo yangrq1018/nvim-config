@@ -38,7 +38,7 @@ dap.adapters.python = function(cb, config)
   else
     cb({
       type = 'executable',
-      command = '/home/martin/anaconda3/bin/python',
+      command = vim.g.python3_host_prog,
       args = { '-m', 'debugpy.adapter' },
       options = {
         source_filetype = 'python',
@@ -47,10 +47,10 @@ dap.adapters.python = function(cb, config)
   end
 end
 
--- Configurations
+-- Configurations as DAP client
 dap.configurations.cpp = {
   {
-    name = 'Launch',
+    name = 'Launch CPP',
     type = 'lldb',
     request = 'launch',
     program = function()
@@ -70,7 +70,7 @@ dap.configurations.cpp = {
 
 dap.configurations.c = {
   {
-    name = 'Launch',
+    name = 'Launch C',
     type = 'lldb',
     request = 'launch',
     program = prompt_program,
@@ -83,19 +83,14 @@ dap.configurations.c = {
 dap.configurations.python = {
   {
     -- The first three options are required by nvim-dap
-    type = 'python'; -- the type here established the link to the adapter definition: `dap.adapters.python`
-    request = 'launch';
-    name = "Launch file";
-
-    -- Options below are for debugpy, see https://github.com/microsoft/debugpy/wiki/Debug-configuration-settings for supported options
-
-    program = "${file}"; -- This configuration will launch the current file if used.
-    pythonPath = function()
-      -- debugpy supports launching an application with a different interpreter then the one used to launch debugpy itself.
-      -- The code below looks for a `venv` or `.venv` folder in the current directly and uses the python within.
-      -- You could adapt this - to for example use the `VIRTUAL_ENV` environment variable.
-      return '/home/martin/anaconda3/bin/python'
-    end;
+    type = 'python', -- the type here established the link to the adapter definition: `dap.adapters.python`
+    request = 'launch',
+    name = "Launch Python script (Conda base)",
+    -- Options below are for debugpy, see https://github.com/microsoft/debugpy/wiki/debug-configuration-settings for supported options
+    program = "${file}", -- This configuration will launch the current file if used.
+    python = function()
+      return vim.g.python3_host_prog
+    end,
   },
 }
 
@@ -140,3 +135,12 @@ whichkey.register(keymap, opts)
 vim.fn.sign_define('DapBreakpoint',         {text='🔴', texthl='', linehl='', numhl=''})
 vim.fn.sign_define('DapStopped',            {text='🟡', texthl='', linehl='', numhl=''})
 vim.fn.sign_define('DapBreakpointRejected', {text='❌', texthl='', linehl='', numhl=''})
+
+-- Launch project-specific launch.json (VSCode like)
+dap_vscode = require('dap.ext.vscode')
+-- use JSON5 in launch.json
+dap_vscode.json_decode = require'json5'.parse
+
+-- the first parameter defaults to .vscode/launch.json in current working directory
+-- but for neovim to properly highlight json5 syntax, explicitly set it here
+dap_vscode.load_launchjs(".vscode/launch.json5", {})

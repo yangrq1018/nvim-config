@@ -113,17 +113,23 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 local lspconfig = require("lspconfig")
 
-if utils.executable("pylsp") then
-  local venv_path = os.getenv('VIRTUAL_ENV')
+if utils.executable("pylsp") or utils.is_non_base_conda_env() then
   local py_path = nil
   -- decide which python executable to use for mypy
-  if venv_path ~= nil then
-    py_path = venv_path .. "/bin/python3"
+  py_path = vim.g.python3_host_prog
+
+  local pylsp_path = nil
+  if utils.executable("pylsp") then
+    pylsp_path = "pylsp"
   else
-    py_path = vim.g.python3_host_prog
+    -- conda virtual environment normally does't have pylsp_path, so point to the base env's
+    -- TODO: this is a bit too hard coded
+    pylsp_path = os.getenv("HOME") .. "/anaconda3/bin/pylsp"
   end
+  print(pylsp_path)
 
   lspconfig.pylsp.setup {
+    cmd = {pylsp_path},
     on_attach = custom_attach,
     settings = {
       pylsp = {

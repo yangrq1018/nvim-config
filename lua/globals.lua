@@ -30,6 +30,11 @@ if utils.executable('python3') then
     vim.g.python3_host_prog = fn.substitute(fn.exepath("python"), ".exe$", '', 'g')
   else
     vim.g.python3_host_prog = fn.exepath("python")
+    if utils.get_conda_prefix() ~= '' then
+      -- this always point to the base environment
+      -- modify this if necessary (your anaconda install path is different)
+      vim.g.python3_host_prog = os.getenv("HOME") .. "/anaconda3/bin/python"
+    end
   end
 else
   api.nvim_err_writeln("Python3 executable not found! You must install Python3 and set its PATH correctly!")

@@ -56,4 +56,19 @@ function M.add_pack(name)
   return status
 end
 
+-- For conda settings
+function M.is_non_base_conda_env()
+  local cde = os.getenv('CONDA_DEFAULT_ENV')
+  return cde ~= '' and cde ~= 'base'
+end
+
+function M.get_conda_prefix()
+  local conda_prefix = os.getenv('CONDA_PREFIX')
+  if conda_prefix == nil then
+    return ''
+  else
+    return conda_prefix
+  end
+end
+
 return M
