@@ -243,8 +243,8 @@ keymap.set('n', '<leader>lg', '<cmd>LazyGit<CR>', {noremap = true, desc = "Open 
 -- Serve hexo (by toggleterm)
 keymap.set('n', '<leader>hs', '<cmd>TermExec cmd="npx hexo s"<CR>', {desc = "Serve hexo blog"})
 
--- Neoformat
-keymap.set('n', '<leader>nf', '<cmd>Neoformat<CR>', {noremap = true, desc = "Format file"})
+-- Formatter
+keymap.set('n', '<leader>nf', '<cmd>Format<CR>', {noremap = true, desc = "Format file"})
 
 -- Diffview
 keymap.set('n', '<leader>gd', '<cmd>DiffviewOpen<CR>', {desc = "Open Git diff view (plugin)"})

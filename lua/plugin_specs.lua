@@ -273,7 +273,13 @@ local plugin_specs = {
   },
 
   -- Auto format tools
-  { "sbdchd/neoformat", cmd = { "Neoformat" } },
+  {
+    "mhartington/formatter.nvim",
+    cmd = { "Format" },
+    config = function()
+      require("config.formatter")
+    end,
+  },
 
   -- Git command inside vim
   {
@@ -463,7 +469,7 @@ local plugin_specs = {
   },
 
   -- show and trim trailing whitespaces
-  { "jdhao/whitespace.nvim", event = "VeryLazy" },
+  { "yangrq1018/whitespace.nvim", event = "VeryLazy"},
 
   -- file explorer
   {
