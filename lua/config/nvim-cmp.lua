@@ -24,7 +24,7 @@ cmp.setup {
         fallback()
       end
     end,
-    ["<CR>"] = cmp.mapping.confirm { select = true },
+    -- ["<CR>"] = cmp.mapping.confirm { select = true },
     ["<C-e>"] = cmp.mapping.abort(),
     ["<Esc>"] = cmp.mapping.close(),
     ["<C-d>"] = cmp.mapping.scroll_docs(-4),
@@ -70,6 +70,12 @@ cmp.setup.filetype("tex", {
     { name = "buffer", keyword_length = 2 }, -- for buffer word completion
     { name = "path" }, -- for path completion
   },
+})
+
+cmp.setup.filetype("markdown", {
+  sources = {
+    { name = "path" },
+  }
 })
 
 --  see https://github.com/hrsh7th/nvim-cmp/wiki/Menu-Appearance#how-to-add-visual-studio-code-dark-theme-colors-to-the-menu
