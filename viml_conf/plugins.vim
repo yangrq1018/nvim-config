@@ -158,7 +158,6 @@ let g:better_escape_interval = 200
 let g:XkbSwitchEnabled = 1
 
 """""""""""""""""""""""""""""" neoformat settings """""""""""""""""""""""
-let g:neoformat_enabled_python = ['black', 'yapf']
 " clang-format should be on $PATH
 let g:neoformat_cpp_clangformat = {
       \ 'exe': 'clang-format',
@@ -172,11 +171,20 @@ let g:neoformat_c_clangformat = {
 let g:neoformat_lua_luaformat = {
     \ 'exe': 'lua-format',
     \ 'args': ['--indent-width=2']
-\}
+    \}
+let g:neoformat_json_jsbeautify = {
+    \ 'exe': 'js-beautify',
+    \}
+let g:neoformat_jsonc_jsbeautify = {
+    \ 'exe': 'js-beautify',
+    \}
 
+let g:neoformat_enabled_python = ['black', 'yapf']
 let g:neoformat_enabled_cpp = ['clangformat']
 let g:neoformat_enabled_c = ['clangformat']
 let g:neoformat_enabled_lua = ['luaformat']
+let g:neoformat_enabled_json = ['jsbeautify']
+let g:neoformat_enabled_jsonc = ['jsbeautify']
 
 """""""""""""""""""""""""vim-markdown settings"""""""""""""""""""
 " Disable header folding
