@@ -50,6 +50,12 @@ local plugin_specs = {
   {
     "nvim-treesitter/nvim-treesitter",
     lazy = true,
+    enabled = function()
+      if vim.g.is_mac or vim.g.is_linux then
+        return true
+      end
+      return false
+    end,
     build = ":TSUpdate",
     config = function()
       require("config.treesitter")
@@ -671,6 +677,14 @@ local plugin_specs = {
       require("config.colorizer")
     end,
   },
+  {
+    "kevinhwang91/nvim-ufo",
+    dependencies = { "kevinhwang91/promise-async", "nvim-treesitter/nvim-treesitter" },
+    event = { "VeryLazy" },
+    config = function()
+      require("config.ufo")
+    end
+  }
 }
 
 -- configuration for lazy itself.
