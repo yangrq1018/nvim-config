@@ -251,5 +251,7 @@ keymap.set('n', '<leader>gd', '<cmd>DiffviewOpen<CR>', {desc = "Open Git diff vi
 keymap.set('n', '<leader>gD', '<cmd>DiffviewClose<CR>', {desc = "Close Git diff view"})
 keymap.set('n', '<leader>gf', '<cmd>DiffviewFileHistory %<CR>', {desc = "Commit history for this file"})
 
+-- Telescope
 keymap.set('n', '<leader>tf', '<cmd>Telescope find_files<CR>', {desc = "Telescope find"})
 keymap.set('n', '<leader>tg', '<cmd>Telescope live_grep<CR>', {desc = "Telescope grep"})
+

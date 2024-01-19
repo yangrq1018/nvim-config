@@ -68,5 +68,3 @@ function! AddLineBreak(type, ...) abort
     call setline(line, new_text)
   endfor
 endfunction
-
-setlocal foldlevel=1

@@ -578,7 +578,7 @@ local plugin_specs = {
     end,
     dependencies = {'nvim-treesitter/nvim-treesitter'},
     opts = {
-      toggle_comment = true,
+      toggle_comment = false,
     },
   },
   {
