@@ -20,6 +20,13 @@ local clang_format = function()
   }
 end
 
+local gofmt = function()
+  return {
+    exe = "gofmt",
+    stdin = true,
+  }
+end
+
 -- Provides the Format, FormatWrite, FormatLock, and FormatWriteLock commands
 require("formatter").setup {
   logging = true, -- print via notify
@@ -40,6 +47,7 @@ require("formatter").setup {
     -- json and json5 filetypes
     json = { js_beautify },
     jsonc = { js_beautify },
-    json5 = { js_beautify }
+    json5 = { js_beautify },
+    go = { gofmt },
   }
 }

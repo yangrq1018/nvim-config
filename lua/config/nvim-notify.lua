@@ -5,6 +5,7 @@ nvim_notify.setup {
   -- Default timeout for notifications
   timeout = 3000,
   background_colour = "#2E3440",
+  render = "wrapped-compact",
 }
 
 vim.notify = nvim_notify

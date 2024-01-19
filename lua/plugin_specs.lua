@@ -553,8 +553,6 @@ local plugin_specs = {
   {
     'keaising/im-select.nvim',
     enabled = function()
-      -- Linux does't need this plugin or im-select.exe
-      -- to switch input method
       return utils.executable("im-select.exe")
     end,
     ft = {'markdown'}, -- lazy-load on markdowns
@@ -589,7 +587,7 @@ local plugin_specs = {
   },
   {
     "mfussenegger/nvim-dap",
-    dependencies = {"Joakker/lua-json5"},
+    dependencies = {"Joakker/lua-json5"}, -- need for dap.ext.vscode
     lazy = true,
     config = function()
       require("config.dap")
@@ -597,16 +595,16 @@ local plugin_specs = {
   },
   {
     "theHamsta/nvim-dap-virtual-text",
+    event = { "VeryLazy" },
     dependencies = {"nvim-treesitter/nvim-treesitter"},
-    keys = { "<leader>dt" }, -- activate dap on breakpoint toggle
     config = function()
       require("config.dap-virtual-text")
     end,
   },
   {
     "rcarriga/nvim-dap-ui",
+    event = { "VeryLazy" },
     dependencies = {"mfussenegger/nvim-dap"},
-    keys = { "<leader>dt" },
     config = function()
       require("config.dap-ui")
     end,
@@ -623,6 +621,7 @@ local plugin_specs = {
   },
   {
     "ziontee113/icon-picker.nvim",
+    event = { "VeryLazy" },
     dependencies = {
       "stevearc/dressing.nvim",
     },
@@ -641,7 +640,6 @@ local plugin_specs = {
   -- git branch viewer
   {
     "rbong/vim-flog",
-    lazy = true,
     cmd = { "Flog", "Flogsplit", "Floggit" },
     dependencies = {
       "tpope/vim-fugitive",
@@ -668,6 +666,7 @@ local plugin_specs = {
   },
   {
     "NvChad/nvim-colorizer.lua",
+    event = {"VeryLazy"},
     config = function()
       require'colorizer'.setup{
         filetypes = {"*"},
