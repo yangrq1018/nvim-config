@@ -35,6 +35,22 @@ categories: [$3]
 $0
 endsnippet
 
+snippet hexo "Hexo front matter (YAML format)" b
+---
+title: "$1"
+toc:
+	number: false
+	enable: true
+date: `!p from datetime import datetime
+if not snip.c:
+	snip.rv=datetime.now().astimezone().strftime("%Y-%m-%d %H:%M:%S")`
+tags: [$2]
+categories: [$3]
+---
+$4
+<!--more-->
+endsnippet
+
 snippet more "HTML more tag"
 <!--more-->
 endsnippet

@@ -217,9 +217,11 @@ local plugin_specs = {
   },
 
   -- Snippet engine and snippet template
-  { "SirVer/ultisnips", dependencies = {
-    "honza/vim-snippets",
-  }, event = "InsertEnter" },
+  {
+    "SirVer/ultisnips",
+    dependencies = { "honza/vim-snippets" },
+    event = "InsertEnter"
+  },
 
   -- Automatic insertion and deletion of a pair of characters
   { "Raimondi/delimitMate", event = "InsertEnter" },
@@ -538,16 +540,6 @@ local plugin_specs = {
         script = true,
         replace_keycodes = false,
       })
-    end,
-  },
-  -- file templates
-  {
-    'glepnir/template.nvim',
-    cmd = {'Template','TemProject'},
-    config = function()
-      require('template').setup {
-        temp_dir = '~/.config/nvim/templates',
-      }
     end,
   },
   -- REPL and Jupyter Notebook alternative for vim

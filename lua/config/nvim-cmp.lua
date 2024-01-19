@@ -75,6 +75,7 @@ cmp.setup.filetype("tex", {
 cmp.setup.filetype("markdown", {
   sources = {
     { name = "path" },
+    { name = "ultisnips" },
   }
 })
 
