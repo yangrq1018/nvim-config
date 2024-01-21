@@ -635,14 +635,6 @@ local plugin_specs = {
       'nvim-telescope/telescope-fzf-native.nvim'
     },
   },
-  -- git branch viewer
-  {
-    "rbong/vim-flog",
-    cmd = { "Flog", "Flogsplit", "Floggit" },
-    dependencies = {
-      "tpope/vim-fugitive",
-    },
-  },
   -- super cool code navigation
   {
     "folke/flash.nvim",
@@ -676,7 +668,8 @@ local plugin_specs = {
     config = function()
       require("config.ufo")
     end
-  }
+  },
+  { 'wakatime/vim-wakatime', event = {"VeryLazy"} },
 }
 
 -- configuration for lazy itself.
