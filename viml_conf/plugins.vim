@@ -107,7 +107,9 @@ let g:Lf_PopupColorscheme = 'gruvbox_material'
 
 " Change keybinding in LeaderF prompt mode, use <Up> and <Down> to navigate
 " items.
-" let g:Lf_CommandMap = {'<C-K>': ['<Up>'], '<C-J>': ['<Down>']}
+let g:Lf_CommandMap = {
+      \ '<C-]>': ['<M-\>'],
+      \ '<C-X>': ['<M-->'] }
 
 " do not preview results, it will add the file to buffer list
 let g:Lf_PreviewResult = {

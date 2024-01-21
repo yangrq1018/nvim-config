@@ -2,7 +2,7 @@ set concealcursor=c
 set synmaxcol=3000  " For long Chinese paragraphs
 setlocal colorcolumn=120
 
-set wrap
+setlocal wrap
 
 " Fix minor issue with footnote, see https://github.com/vim-pandoc/vim-markdownfootnotes/issues/22
 if exists(':FootnoteNumber')
