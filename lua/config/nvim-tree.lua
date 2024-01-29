@@ -72,7 +72,7 @@ nvim_tree.setup {
       restrict_above_cwd = false,
     },
     open_file = {
-      quit_on_open = false,
+      quit_on_open = true,
       resize_window = true,
       window_picker = {
         enable = true,
@@ -82,6 +82,9 @@ nvim_tree.setup {
           buftype = { "nofile", "terminal", "help" },
         },
       },
+    },
+    remove_file = {
+      close_window = false, -- close the active buffer will quit neovim
     },
   },
   trash = {
