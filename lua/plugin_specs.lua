@@ -2,6 +2,11 @@ local utils = require("utils")
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 
+-- util function
+function string:startswith(start)
+    return self:sub(1, #start) == start
+end
+
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system {
     "git",
@@ -630,10 +635,25 @@ local plugin_specs = {
     end,
   },
   {
-    'yangrq1018/dropbar.nvim',
+    'Bekaboo/dropbar.nvim',
     dependencies = {
       'nvim-telescope/telescope-fzf-native.nvim'
     },
+    config = function()
+      require('dropbar').setup({
+        general = {
+          attach_events = {'OptionSet', 'BufWinEnter', 'BufWritePost'},
+          enable = function(buf, win, _)
+            if vim.bo[buf].filetype == 'fugitiveblame' then return true end
+            if vim.api.nvim_buf_get_name(buf):startswith('diffview:') then return true end
+            return not vim.api.nvim_win_get_config(win).zindex
+              and (vim.bo[buf].buftype == '' or vim.bo[buf].buftype == 'terminal')
+              and vim.api.nvim_buf_get_name(buf) ~= ''
+              and not vim.wo[win].diff
+          end,
+        },
+      })
+    end,
   },
   -- super cool code navigation
   {
@@ -656,7 +676,8 @@ local plugin_specs = {
   },
   {
     "NvChad/nvim-colorizer.lua",
-    event = {"VeryLazy"},
+    -- non-lazy if you want to color some filetypes that are set very early
+    -- event = {"VeryLazy"},
     config = function()
       require("config.colorizer")
     end,
