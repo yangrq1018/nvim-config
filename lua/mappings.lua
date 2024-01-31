@@ -247,7 +247,7 @@ keymap.set('n', '<CR>', '<cmd>FineCmdline<CR>', {noremap = true})
 keymap.set('n', '<leader>lg', '<cmd>LazyGit<CR>', {noremap = true, desc = "Open LazyGit"})
 
 -- Serve hexo (by toggleterm)
-keymap.set('n', '<leader>hs', '<cmd>TermExec cmd="npx hexo s"<CR>', {desc = "Serve hexo blog"})
+-- keymap.set('n', '<leader>hs', '<cmd>TermExec cmd="npx hexo s"<CR>', {desc = "Serve hexo blog"})
 
 -- Formatter
 keymap.set('n', '<leader>nf', '<cmd>Format<CR>', {noremap = true, desc = "Format file"})
