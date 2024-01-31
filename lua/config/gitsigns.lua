@@ -2,11 +2,11 @@ local gs = require("gitsigns")
 
 gs.setup {
   signs = {
-    add = { hl = "GitSignsAdd", text = "+", numhl = "GitSignsAddNr", linehl = "GitSignsAddLn" },
-    change = { hl = "GitSignsChange", text = "~", numhl = "GitSignsChangeNr", linehl = "GitSignsChangeLn" },
-    delete = { hl = "GitSignsDelete", text = "_", numhl = "GitSignsDeleteNr", linehl = "GitSignsDeleteLn" },
-    topdelete = { hl = "GitSignsDelete", text = "‾", numhl = "GitSignsDeleteNr", linehl = "GitSignsDeleteLn" },
-    changedelete = { hl = "GitSignsChange", text = "│", numhl = "GitSignsChangeNr", linehl = "GitSignsChangeLn" },
+    add          = {show_count = false},
+    change       = {show_count = false},
+    delete       = {show_count = true },
+    topdelete    = {show_count = true },
+    changedelete = {show_count = true },
   },
   word_diff = true,
   on_attach = function(bufnr)
@@ -39,19 +39,23 @@ gs.setup {
 
     -- Actions
     map("n", "<leader>hp", gs.preview_hunk, { desc = "preview hunk"})
+    map("n", '<leader>hi', gs.preview_hunk_inline, { desc = "preview hunk inline"})
     map("n", "<leader>hb", function()
       gs.blame_line { full = true }
     end, { desc = "blame line" })
+    map("n", '<leader>hs', gs.stage_hunk, { desc = "stage hunk"})
+    map("n", '<leader>hu', gs.undo_stage_hunk, { desc = "undo stage hunk"})
+    map("n", '<leader>hr', gs.reset_hunk, { desc = "reset hunk"})
   end,
 }
 
-vim.api.nvim_create_autocmd('ColorScheme', {
-  pattern = "*",
-  callback = function()
-    vim.cmd [[
-      hi GitSignsChangeInline gui=reverse
-      hi GitSignsAddInline gui=reverse
-      hi GitSignsDeleteInline gui=reverse
-    ]]
-  end
-})
+-- vim.api.nvim_create_autocmd('ColorScheme', {
+--   pattern = "*",
+--   callback = function()
+--     vim.cmd [[
+--       hi GitSignsChangeInline gui=reverse
+--       hi GitSignsAddInline gui=reverse
+--       hi GitSignsDeleteInline gui=reverse
+--     ]]
+--   end
+-- })
