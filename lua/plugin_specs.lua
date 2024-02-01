@@ -679,6 +679,30 @@ local plugin_specs = {
     end
   },
   { 'wakatime/vim-wakatime', event = {"VeryLazy"} },
+  {
+    "kawre/leetcode.nvim",
+    build = ":TSUpdate html",
+    dependencies = {
+      "nvim-telescope/telescope.nvim",
+      "nvim-lua/plenary.nvim", -- required by telescope
+      "MunifTanjim/nui.nvim",
+      -- optional
+      "nvim-treesitter/nvim-treesitter",
+      "rcarriga/nvim-notify",
+      "nvim-tree/nvim-web-devicons",
+    },
+    opts = {
+      lang = "python3",
+      hooks = {
+        LeetEnter = {
+          function()
+            -- disable copilot for your own good
+            vim.cmd[[Copilot disable]]
+          end
+        }
+      }
+    },
+  },
 }
 
 -- configuration for lazy itself.
