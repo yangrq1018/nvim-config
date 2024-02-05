@@ -38,7 +38,7 @@ cmp.setup {
     { name = "emoji", insert = true }, -- emoji completion
   },
   completion = {
-    keyword_length = 1,
+    keyword_length = 2,
     -- removed 'noselect', the first entry is always focused and doc shown
     completeopt = "menu",
   },
@@ -48,8 +48,11 @@ cmp.setup {
     entries = "custom",
   },
   formatting = {
+    expandable_indicator = false, -- don't show expand indicator ~
     format = lspkind.cmp_format {
       mode = "symbol_text",
+      maxwidth = 40,
+      ellipsis_char = '\u{2026}', -- more elegant ellipsis
       menu = {
         nvim_lsp = "[LSP]",
         ultisnips = "[US]",

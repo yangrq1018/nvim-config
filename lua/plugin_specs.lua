@@ -197,13 +197,6 @@ local plugin_specs = {
   -- not be possible since we may be in a server which disables GUI.
   {
     "tyru/open-browser.vim",
-    enabled = function()
-      if vim.g.is_win or vim.g.is_mac then
-        return true
-      else
-        return false
-      end
-    end,
     event = "VeryLazy",
   },
 

@@ -126,14 +126,12 @@ let g:Lf_PreviewResult = {
       \}
 
 """"""""""""""""""""""""""""open-browser.vim settings"""""""""""""""""""
-if g:is_win || g:is_mac
-  " Disable netrw's gx mapping.
-  let g:netrw_nogx = 1
+" Disable netrw's gx mapping.
+" let g:netrw_nogx = 1
 
-  " Use another mapping for the open URL method
-  nmap ob <Plug>(openbrowser-smart-search)
-  xmap ob <Plug>(openbrowser-smart-search)
-endif
+" Use another mapping for the open URL method
+nmap <leader>ob <Plug>(openbrowser-smart-search)
+xmap <leader>ob <Plug>(openbrowser-smart-search)
 
 """"""""""""""""""""""""""" vista settings """"""""""""""""""""""""""""""""""
 let g:vista#renderer#icons = {
