@@ -29,6 +29,15 @@ local gofmt = function()
   }
 end
 
+local black = function()
+  return {
+    exe = "black",
+    args = {"-"}, -- need dash as path to indicate black stdin will be used
+    stdin = true,
+  }
+end
+
+
 -- Provides the Format, FormatWrite, FormatLock, and FormatWriteLock commands
 require("formatter").setup {
   logging = true, -- print via notify
@@ -51,5 +60,6 @@ require("formatter").setup {
     jsonc = { js_beautify },
     json5 = { js_beautify },
     go = { gofmt },
+    python = { black },
   }
 }
