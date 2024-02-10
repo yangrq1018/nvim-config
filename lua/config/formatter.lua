@@ -20,6 +20,8 @@ local clang_format = function()
   }
 end
 
+-- You might want .go files to have `expandtab`, that's possible
+-- with gofmt, which mandates tabs instead of spaces.
 local gofmt = function()
   return {
     exe = "gofmt",

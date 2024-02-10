@@ -614,7 +614,10 @@ local plugin_specs = {
   {
     'windwp/nvim-autopairs',
     event = "InsertEnter",
-    opts = {},
+    opts = {
+      -- avoid unbalance bracket on new lines
+      enable_check_bracket_line = false,
+    },
   },
   {
     "ziontee113/icon-picker.nvim",

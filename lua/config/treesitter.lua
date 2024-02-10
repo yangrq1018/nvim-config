@@ -8,5 +8,8 @@ require("nvim-treesitter.configs").setup {
   highlight = {
     enable = true, -- false will disable the whole extension
     disable = {"bash"} -- for zsh, mainly...
-  }
+  },
+  indent = {
+    enable = true, -- enable indent for autopairs <CR> indentation
+  },
 }
