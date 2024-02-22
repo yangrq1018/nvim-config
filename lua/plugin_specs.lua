@@ -92,13 +92,13 @@ local plugin_specs = {
   },
 
   -- Super fast buffer jump
-  {
-    "smoka7/hop.nvim",
-    event = "VeryLazy",
-    config = function()
-      require("config.nvim_hop")
-    end,
-  },
+  -- {
+  --   "smoka7/hop.nvim",
+  --   event = "VeryLazy",
+  --   config = function()
+  --     require("config.nvim_hop")
+  --   end,
+  -- },
 
   -- Show match number and index for searching
   {
@@ -640,7 +640,7 @@ local plugin_specs = {
       require("config.dropbar")
     end,
   },
-  -- super cool code navigation
+  -- super cool code navigation, alternative of hop
   {
     "folke/flash.nvim",
     event = "VeryLazy",
