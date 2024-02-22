@@ -71,7 +71,13 @@ keymap.set("n", "<space>O", "printf('m`%sO<ESC>``', v:count1)", {
 keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true })
 keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true })
 keymap.set("n", "^", "g^")
-keymap.set("n", "0", "g0")
+
+-- When wrap if off, move the line start/end in the visible part
+-- I probably don't want these because often I do want to go to
+-- the real line start/end...
+-- If ever wanted to use the visible part, use `g0` and `g$` instead.
+-- keymap.set("n", "0", "g0")
+-- keymap.set("n", "$", "g$")
 
 -- Do not include white space characters when using $ in visual mode,
 -- see https://vi.stackexchange.com/q/12607/15292

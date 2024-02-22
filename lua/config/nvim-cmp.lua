@@ -38,7 +38,7 @@ cmp.setup {
     { name = "emoji", insert = true }, -- emoji completion
   },
   completion = {
-    keyword_length = 3,
+    keyword_length = 1,
     -- removed 'noselect', the first entry is always focused and doc shown
     completeopt = "menu",
   },

@@ -8,7 +8,7 @@ gs.setup {
     topdelete    = {show_count = true },
     changedelete = {show_count = true },
   },
-  word_diff = true,
+  word_diff = false,
   numhl = true,
   linehl = false,
   current_line_blame = true,

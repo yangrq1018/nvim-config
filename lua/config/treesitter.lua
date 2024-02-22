@@ -9,7 +9,10 @@ require("nvim-treesitter.configs").setup {
     enable = true, -- false will disable the whole extension
     disable = {"bash"} -- for zsh, mainly...
   },
+  -- But many modules have buggy indent implementations
+  -- It's a pity that there isn't a whitelist way to enable indent..
   indent = {
     enable = true, -- enable indent for autopairs <CR> indentation
+    disable = {"python", "lua"},
   },
 }
