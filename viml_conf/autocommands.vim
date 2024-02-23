@@ -58,8 +58,27 @@ function! s:custom_highlight() abort
   highlight YankColor ctermfg=59 ctermbg=41 guifg=#34495E guibg=#2ECC71
 
   " For cursor colors
-  highlight Cursor cterm=bold gui=bold guibg=#00c918 guifg=black
+  " I choose to use these as indent-blankline doesn't play well
+  " and some colorschemes link gitsigns change highlight to TermCursor
+
+  " Note: the `Cursor` group here has trouble over some virtual
+  " text such as @ibl.indent.char.1, it seems the Cursor guibg
+  " will be removed, and the terminal bg is used instead.
+
+  " This overlapping issue also occurs for any theme's setting
+  " For example, onedark_vivid has Cursor set to purple, but the
+  " cursor is still gray on indent character.
+
+  " highlight Cursor cterm=bold gui=bold guibg=#00c918 guifg=black
   highlight Cursor2 guifg=red guibg=red
+
+  " To fix that cursor highlight is overriden by ibl, one way is to
+  " clear the ibl highlight group:
+  " hi clear @ibl.indent.char.1
+  " hi clear @ibl.whitespace.char.1
+  " hi clear @ibl.scope.char.1
+  " Howeverm you are gonna need this somewhere later on startup
+  " Execution order: colorscheme -> custom_highlight -> indent-blankline
 
   " For floating windows border highlight
   highlight FloatBorder guifg=LightGreen guibg=NONE
@@ -127,5 +146,6 @@ augroup nomod_python_library
   autocmd BufReadPost,BufNewFile ~/anaconda3/lib/python3.11/* setlocal noma
   autocmd BufReadPost,BufNewFile ~/anaconda3/envs/hikyuu/lib/python3.9/* setlocal noma
 augroup END
+
 " Load auto-command defined in Lua
 lua require("custom-autocmd")
