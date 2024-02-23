@@ -121,5 +121,11 @@ augroup END
 
 autocmd FileType git set foldmethod=syntax
 
+" Python library read-only view
+augroup nomod_python_library
+  autocmd!
+  autocmd BufReadPost,BufNewFile ~/anaconda3/lib/python3.11/* setlocal noma
+  autocmd BufReadPost,BufNewFile ~/anaconda3/envs/hikyuu/lib/python3.9/* setlocal noma
+augroup END
 " Load auto-command defined in Lua
 lua require("custom-autocmd")
