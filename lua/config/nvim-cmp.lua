@@ -67,9 +67,21 @@ cmp.setup {
 }
 
 cmp.setup.filetype("tex", {
+  formatting = {
+    -- Preserve the format as provided by VimTeX's omni completion function
+    -- show source types like 'package', 'cmd', etc.
+    format = function(entry, vim_item)
+        vim_item.menu = ({
+          omni = (vim.inspect(vim_item.menu):gsub('%"', "")),
+          buffer = "[Buffer]",
+          -- formatting for other sources
+          })[entry.source.name]
+        return vim_item
+      end,
+  },
   sources = {
     { name = "omni" },
-    { name = "ultisnips" }, -- For ultisnips user.
+    -- { name = "ultisnips" }, -- For ultisnips user.
     { name = "buffer", keyword_length = 2 }, -- for buffer word completion
     { name = "path" }, -- for path completion
   },

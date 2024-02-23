@@ -230,9 +230,27 @@ if executable('latex')
     autocmd FileType tex nmap <buffer> <F9> <plug>(vimtex-compile)
   augroup END
 
+  " Don't open quickfix if no errors just warnings
+  " WARNING: the quickfix window has bugs, use :bn or :bp when the
+  " quickfix window is open will case neovim to quit
+  let g:vimtex_quickfix_open_on_warning = 0
+
+  " change aux_dir
+  " keep -synctex=1 for forward search in viewer
   let g:vimtex_compiler_latexmk = {
-        \ 'build_dir' : 'build',
-        \ }
+      \ 'aux_dir' : 'aux',
+      \ 'out_dir' : '',
+      \ 'callback' : 1,
+      \ 'continuous' : 1,
+      \ 'executable' : 'latexmk',
+      \ 'hooks' : [],
+      \ 'options' : [
+      \   '-verbose',
+      \   '-file-line-error',
+      \   '-synctex=1',
+      \   '-interaction=nonstopmode',
+      \ ],
+      \}
 
   " TOC settings
   let g:vimtex_toc_config = {
@@ -247,6 +265,10 @@ if executable('latex')
         \ }
 
   " Viewer settings for different platforms
+  if g:is_linux
+    let g:vimtex_view_method = 'zathura'
+  endif
+
   if g:is_win
     let g:vimtex_view_general_viewer = 'SumatraPDF'
     let g:vimtex_view_general_options = '-reuse-instance -forward-search @tex @line @pdf'
