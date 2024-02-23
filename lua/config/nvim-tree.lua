@@ -9,7 +9,7 @@ nvim_tree.setup {
   hijack_unnamed_buffer_when_opening = false,
   open_on_tab = false,
   sort_by = "name",
-  update_cwd = false,
+  sync_root_with_cwd = true,
   view = {
     width = 30,
     side = "left",
@@ -36,8 +36,8 @@ nvim_tree.setup {
     auto_open = true,
   },
   update_focused_file = {
-    enable = false,
-    update_cwd = false,
+    enable = true,
+    update_root = false,
     ignore_list = {},
   },
   system_open = {
@@ -73,7 +73,7 @@ nvim_tree.setup {
     },
     open_file = {
       quit_on_open = false,
-      resize_window = false,
+      resize_window = true,
       window_picker = {
         enable = true,
         chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890",
@@ -102,7 +102,8 @@ nvim_tree.setup {
   },
 }
 
-keymap.set("n", "<space>s", require("nvim-tree.api").tree.toggle, {
+local api = require("nvim-tree.api")
+keymap.set("n", "<space>s", api.tree.toggle, {
   silent = true,
   desc = "toggle nvim-tree",
 })

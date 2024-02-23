@@ -149,7 +149,10 @@ local plugin_specs = {
 
   {
     "akinsho/bufferline.nvim",
-    event = { "BufEnter" },
+    -- event = { "BufEnter" },
+    -- ensure loaded before transparent.nvim so bufferline is not transparent
+    lazy = false,
+    priority = 100,
     cond = firenvim_not_active,
     config = function()
       require("config.bufferline")
@@ -488,6 +491,44 @@ local plugin_specs = {
       require("config.fidget-nvim")
     end,
   },
+  {
+    "akinsho/toggleterm.nvim", version = "*", opts = {
+      open_mapping = [[<leader>tt]],
+      direction = 'float'
+    }
+  },
+  -- Xmake build tool
+  {
+    -- 'yangrq1018/xmake.nvim',
+    dir = "/home/martin/xmake.nvim",
+    lazy = true,
+    event = "BufReadPost xmake.lua",
+    config = true,
+    dependencies = {"MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim"}
+  },
+  {
+    "xiyaowong/transparent.nvim",
+    lazy = false,
+    config = function()
+      require("transparent").setup({
+        exclude_groups = {'StatusLine'}
+      })
+    end,
+  },
+  {
+    "github/copilot.vim",
+    event = { "BufEnter" },
+    config = function()
+      vim.g.copilot_assume_mapped = true
+      vim.keymap.set('i', '<C-e>', [[copilot#Accept("\<CR>")]], {
+        silent = true,
+        expr = true,
+        script = true,
+        replace_keycodes = false,
+      })
+    end,
+  },
+   
 }
 
 -- configuration for lazy itself.

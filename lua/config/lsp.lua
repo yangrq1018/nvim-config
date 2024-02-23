@@ -191,6 +191,11 @@ if utils.executable("clangd") then
     flags = {
       debounce_text_changes = 500,
     },
+    cmd = {
+      -- solve "multiple different client offset-encodings detected for buffer warning"
+      "clangd",
+      "--offset-encoding=utf-16"
+    }
   }
 end
 

@@ -118,14 +118,30 @@ local virtual_env = function()
   end
 end
 
+local xmake_component = {
+  function()
+    local xmake = require("xmake.project_config").info
+    if xmake.target.tg == "" then
+        return ""
+    end
+    return xmake.target.tg .. "(" .. xmake.mode .. ")"
+  end,
+
+  cond = function()
+    return vim.o.columns > 100
+  end,
+
+  on_click = function()
+    require("xmake.project_config._menu").init() -- Add the on-click ui
+  end,
+}
+
 require("lualine").setup {
   options = {
     icons_enabled = true,
     theme = "auto",
-    -- component_separators = { left = "", right = "" },
-    -- section_separators = { left = "", right = "" },
-    section_separators = "",
-    component_separators = "",
+    component_separators = { left = "", right = "" },
+    section_separators = { left = "", right = "" },
     disabled_filetypes = {},
     always_divide_middle = true,
   },
@@ -139,11 +155,12 @@ require("lualine").setup {
       },
       {
         virtual_env,
-        color = { fg = 'black', bg = "#F1CA81" }
+        -- color = { fg = 'black', bg = "#F1CA81" }
       }
     },
     lualine_c = {
       "filename",
+      xmake_component,
       {
         ime_state,
         color = { fg = "black", bg = "#f46868" },

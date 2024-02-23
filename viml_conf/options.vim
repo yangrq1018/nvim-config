@@ -48,7 +48,7 @@ set expandtab       " expand tab to spaces so that tabs are spaces
 " Set matching pairs of characters and highlight matching brackets
 set matchpairs+=<:>,「:」,『:』,【:】,“:”,‘:’,《:》
 
-set number relativenumber  " Show line number and relative line number
+set number relativenumber " Show line number and relative line number
 
 " Ignore case in general, but become case-sensitive when uppercase is present
 set ignorecase smartcase
@@ -69,9 +69,9 @@ set wildmode=list:longest
 set scrolloff=3
 
 " Use mouse to select and resize windows, etc.
-set mouse=nic  " Enable mouse in several mode
+" set mouse=nic  " Enable mouse in several mode
 set mousemodel=popup  " Set the behaviour of mouse
-set mousescroll=ver:1,hor:0
+" set mousescroll=ver:1,hor:0
 
 " Disable showing current mode on command line since statusline plugins can show it.
 set noshowmode
@@ -176,3 +176,4 @@ set diffopt+=linematch:60
 
 set nowrap  " do no wrap
 set noruler
+

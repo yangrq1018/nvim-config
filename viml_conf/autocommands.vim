@@ -43,8 +43,8 @@ endfunction
 
 augroup numbertoggle
   autocmd!
-  autocmd BufEnter,FocusGained,InsertLeave,WinEnter * if &nu | set rnu   | endif
-  autocmd BufLeave,FocusLost,InsertEnter,WinLeave   * if &nu | set nornu | endif
+  autocmd BufEnter,FocusGained,InsertLeave,WinEnter * if &nu | set nornu   | endif
+  autocmd BufLeave,FocusLost,InsertEnter,WinLeave   * if &nu | set rnu | endif
 augroup END
 
 " Define or override some highlight groups
@@ -118,6 +118,8 @@ augroup LargeFile
   autocmd!
   autocmd BufReadPre * call s:handle_large_file()
 augroup END
+
+autocmd FileType git set foldmethod=syntax
 
 " Load auto-command defined in Lua
 lua require("custom-autocmd")

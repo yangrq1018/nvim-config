@@ -229,3 +229,6 @@ keymap.set("n", "<leader>cb", function()
     cnt = cnt + 1
   end))
 end)
+
+-- ToggleTerm select from terminals
+keymap.set("n", "<leader>ts", "<cmd>TermSelect<cr>")

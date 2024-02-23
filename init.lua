@@ -18,10 +18,27 @@ local expected_ver = "0.9.4"
 local ev = version.parse(expected_ver)
 local actual_ver = version()
 
-if version.cmp(ev, actual_ver) ~= 0 then
-  local _ver = string.format("%s.%s.%s", actual_ver.major, actual_ver.minor, actual_ver.patch)
-  local msg = string.format("Expect nvim %s, but got %s instead. Use at your own risk!", expected_ver, _ver)
-  vim.api.nvim_err_writeln(msg)
+-- if version.cmp(ev, actual_ver) ~= 0 then
+--   local _ver = string.format("%s.%s.%s", actual_ver.major, actual_ver.minor, actual_ver.patch)
+--   local msg = string.format("Expect nvim %s, but got %s instead. Use at your own risk!", expected_ver, _ver)
+--   vim.api.nvim_err_writeln(msg)
+-- end
+
+local os_name = vim.loop.os_uname().sysname
+if os_name ~= "Linux" then
+  -- powershell toggleterm
+  local powershell_options = {
+    shell = vim.fn.executable "pwsh" == 1 and "pwsh" or "powershell",
+    shellcmdflag = "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;",
+    shellredir = "-RedirectStandardOutput %s -NoNewWindow -Wait",
+    shellpipe = "2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode",
+    shellquote = "",
+    shellxquote = "",
+  }
+
+  for option, value in pairs(powershell_options) do
+    vim.opt[option] = value
+  end
 end
 
 local core_conf_files = {
