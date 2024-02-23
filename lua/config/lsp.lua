@@ -123,7 +123,7 @@ if utils.executable("pylsp") or utils.is_non_base_conda_env() then
     pylsp_path = "pylsp"
   else
     -- conda virtual environment normally does't have pylsp_path, so point to the base env's
-    -- TODO: this is a bit too hard coded
+    -- TODO: this is a bit too hardcode
     pylsp_path = os.getenv("HOME") .. "/anaconda3/bin/pylsp"
   end
 
@@ -198,9 +198,11 @@ if utils.executable("clangd") then
       debounce_text_changes = 500,
     },
     cmd = {
-      -- solve "multiple different client offset-encodings detected for buffer warning"
       "clangd",
-      "--offset-encoding=utf-16"
+      -- solve "multiple different client offset-encodings detected for buffer warning"
+      "--offset-encoding=utf-16",
+      -- make clangd suggestions align better
+      "--header-insertion-decorators=false",
     }
   }
 end

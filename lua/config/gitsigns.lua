@@ -9,6 +9,8 @@ gs.setup {
     changedelete = {show_count = true },
   },
   word_diff = true,
+  numhl = true,
+  linehl = false,
   current_line_blame = true,
   on_attach = function(bufnr)
     local function map(mode, l, r, opts)

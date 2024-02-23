@@ -381,6 +381,7 @@ local plugin_specs = {
   { "machakann/vim-sandwich", event = "VeryLazy" },
 
   -- Add indent object for vim (useful for languages like Python)
+  -- Provide quick selection on indented syntax structure (like if block)
   { "michaeljsmith/vim-indent-object", event = "VeryLazy" },
 
   -- Only use these plugin on Windows and Mac and when LaTeX is installed

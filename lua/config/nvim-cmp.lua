@@ -34,11 +34,11 @@ cmp.setup {
     { name = "nvim_lsp" }, -- For nvim-lsp
     { name = "ultisnips" }, -- For ultisnips user.
     { name = "path" }, -- for path completion
-    { name = "buffer", keyword_length = 2 }, -- for buffer word completion
+    { name = "buffer", keyword_length = 3 }, -- for buffer word completion
     { name = "emoji", insert = true }, -- emoji completion
   },
   completion = {
-    keyword_length = 2,
+    keyword_length = 3,
     -- removed 'noselect', the first entry is always focused and doc shown
     completeopt = "menu",
   },
