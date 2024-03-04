@@ -13,8 +13,7 @@ require('dropbar').setup({
   general = {
     attach_events = {
       -- Remove these two as they causes error sometimes when window appears (or just for no reason)
-      -- 'OptionSet',
-      -- 'BufWritePost'
+      -- The default values are 'BufWinEnter', 'BufWritePost'
       'BufWinEnter',
     },
     enable = enable
