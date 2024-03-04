@@ -412,7 +412,11 @@ function! s:wilder_init() abort
 endfunction
 
 """"""""""""""""""""""""""""""vim-auto-save settings""""""""""""""""""""""""""""""
-let g:auto_save = 1  " enable AutoSave on Vim startup
+" enable AutoSave on Vim startup
+let g:auto_save = 1
+" don't want autosave on TextChanged, refresh intellisense too fast when editing
+" xmake.lua in normal mode
+let g:auto_save_events = ["InsertLeave"]
 
 """"""""""""""""""""""""""""""auto-pairs settings""""""""""""""""""""""""""""""
 let g:AutoPairsCenterLine = 0
