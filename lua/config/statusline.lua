@@ -140,7 +140,8 @@ require("lualine").setup {
   options = {
     icons_enabled = true,
     theme = "auto",
-    component_separators = { left = "", right = "" },
+    -- component_separators = { left = "", right = "" },
+    component_separators = "",
     section_separators = { left = "", right = "" },
     disabled_filetypes = {},
     always_divide_middle = true,
@@ -153,10 +154,6 @@ require("lualine").setup {
         "diff",
         source = diff,
       },
-      {
-        virtual_env,
-        -- color = { fg = 'black', bg = "#F1CA81" }
-      }
     },
     lualine_c = {
       "filename",
@@ -185,6 +182,10 @@ require("lualine").setup {
       --     mac = "mac",
       --   },
       -- },
+      {
+        virtual_env,
+        color = { fg = 'black', bg = "#F1CA81" }
+      },
       "filetype",
     },
     lualine_y = {
