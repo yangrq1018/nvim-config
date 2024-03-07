@@ -44,20 +44,10 @@ conf.center = {
     action = "tabnew $MYVIMRC | tcd %:p:h",
     key = "<Leader> e v",
   },
-  {
-    icon = "  ",
-    desc = "New file                                ",
-    action = "enew",
-    key = "e",
-  },
-  {
-    icon = "󰗼  ",
-    desc = "Quit Nvim                               ",
-    -- desc = "Quit Nvim                               ",
-    action = "qa",
-    key = "q",
-  },
 }
+
+-- The footer by default is plugin managers (like lazy) stats
+-- conf.footer =  {}
 
 dashboard.setup({
   theme = 'doom',
@@ -65,11 +55,3 @@ dashboard.setup({
   config = conf
 })
 
-api.nvim_create_autocmd("FileType", {
-  pattern = "dashboard",
-  group = api.nvim_create_augroup("dashboard_enter", { clear = true }),
-  callback = function ()
-    keymap.set("n", "q", ":qa<CR>", { buffer = true, silent = true })
-    keymap.set("n", "e", ":enew<CR>", { buffer = true, silent = true })
-  end
-})
