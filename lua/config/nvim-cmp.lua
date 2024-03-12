@@ -1,8 +1,13 @@
 -- Setup nvim-cmp.
 local cmp = require("cmp")
 local lspkind = require("lspkind")
+local context = require('cmp.config.context')
 
 cmp.setup {
+  enabled = function()
+    -- disable cmp in comment
+    return not context.in_treesitter_capture('comment')
+  end,
   snippet = {
     expand = function(args)
       -- For `ultisnips` user.
