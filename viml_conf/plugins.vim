@@ -29,6 +29,7 @@ let g:UltiSnipsJumpBackwardTrigger='<c-k>'
 
 " Configuration for custom snippets directory, see
 " https://jdhao.github.io/2019/04/17/neovim_snippet_s1/ for details.
+" This will load additional snippets from `honza/vim-snippets`
 let g:UltiSnipsSnippetDirectories=['UltiSnips', 'my_snippets']
 
 """""""""""""""""""""""""" vlime settings """"""""""""""""""""""""""""""""
@@ -173,6 +174,9 @@ let g:vim_markdown_json_frontmatter = 1  " for JSON format
 
 " Let the TOC window autofit so that it doesn't take too much space
 let g:vim_markdown_toc_autofit = 1
+
+let g:vim_markdown_auto_insert_bullets = 0
+" let g:vim_markdown_new_list_item_indent = 2
 
 """""""""""""""""""""""""markdown-preview settings"""""""""""""""""""
 " Only setting this for suitable platforms
@@ -420,3 +424,9 @@ let g:auto_save_events = ["InsertLeave"]
 
 """"""""""""""""""""""""""""""auto-pairs settings""""""""""""""""""""""""""""""
 let g:AutoPairsCenterLine = 0
+
+
+""""""""""""""""""""""""""""""Github Copilot"""""""""""""""""""""""""""""""""""
+let g:copilot_filetypes = {
+      \'markdown': v:false,
+      \ }
