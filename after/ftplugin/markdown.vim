@@ -1,6 +1,7 @@
 set concealcursor=c
 set synmaxcol=3000  " For long Chinese paragraphs
-setlocal colorcolumn=80
+setlocal colorcolumn=100
+setlocal textwidth=100
 
 setlocal wrap
 

@@ -1,5 +1,4 @@
 set commentstring=//\ %s
-setlocal colorcolumn=80
 
 " Disable inserting comment leader after hitting o or O or <Enter>
 set formatoptions-=o
