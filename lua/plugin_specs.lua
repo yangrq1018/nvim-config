@@ -217,7 +217,7 @@ local plugin_specs = {
   -- Snippet engine and snippet template
   {
     "SirVer/ultisnips",
-    dependencies = { "honza/vim-snippets" },
+    -- dependencies = { "honza/vim-snippets" },
     event = "InsertEnter"
   },
 
@@ -384,7 +384,7 @@ local plugin_specs = {
   -- Provide quick selection on indented syntax structure (like if block)
   { "michaeljsmith/vim-indent-object", event = "VeryLazy" },
 
-  -- Only use these plugin on Windows and Mac and when LaTeX is installed
+  -- Only use these plugin when LaTeX is installed
   {
     "lervag/vimtex",
     enabled = function()
@@ -475,8 +475,12 @@ local plugin_specs = {
     end,
   },
 
+  -- It's probably better to not set event to "VeryLazy"
+  -- as it does not fire the `BufEnter` autocommand (patch 3b999bf) initially.
+  -- So you won't get visual hint of whitespaces unless you switch to insert
+  -- mode to trigger autocmd on other events.
   -- show and trim trailing whitespaces
-  { "yangrq1018/whitespace.nvim", event = "VeryLazy"},
+  { "yangrq1018/whitespace.nvim", event = {"BufEnter"}},
 
   -- file explorer
   {

@@ -175,7 +175,7 @@ let g:vim_markdown_json_frontmatter = 1  " for JSON format
 " Let the TOC window autofit so that it doesn't take too much space
 let g:vim_markdown_toc_autofit = 1
 
-let g:vim_markdown_auto_insert_bullets = 0
+" let g:vim_markdown_auto_insert_bullets = 0
 " let g:vim_markdown_new_list_item_indent = 2
 
 """""""""""""""""""""""""markdown-preview settings"""""""""""""""""""
