@@ -95,7 +95,6 @@ dap.configurations.python = {
 }
 
 -- Shortcuts
-local whichkey = require("which-key")
 local keymap = {
   d = {
     name = "DAP",
@@ -129,7 +128,7 @@ local opts = {
   noremap = true,
   nowait = false,
 }
-whichkey.register(keymap, opts)
+require("which-key").register(keymap, opts)
 
 -- Customize the icons
 vim.fn.sign_define('DapBreakpoint',         {text='🔴', texthl='', linehl='', numhl=''})

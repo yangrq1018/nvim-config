@@ -5,6 +5,7 @@ require("nvim-treesitter.configs").setup {
     "rasi" -- for rofi configuration
   },
   ignore_install = {}, -- List of parsers to ignore installing
+  -- Modules
   highlight = {
     enable = true, -- false will disable the whole extension
     disable = {"bash"} -- for zsh, mainly...
@@ -14,5 +15,9 @@ require("nvim-treesitter.configs").setup {
   indent = {
     enable = true, -- enable indent for autopairs <CR> indentation
     disable = {"python", "lua"},
+  },
+  -- Provided by vim-matchup
+  matchup = {
+    enable = true,
   },
 }
