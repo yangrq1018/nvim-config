@@ -162,7 +162,8 @@ keymap.set("x", "<A-j>", '<cmd>call utils#MoveSelection("down")<cr>', { desc = "
 
 -- Replace visual selection with text in register, but not contaminate the register,
 -- see also https://stackoverflow.com/q/10723700/6064933.
-keymap.set("x", "p", '"_c<Esc>p')
+-- this won't work if you want to replace the first word in line
+-- keymap.set("x", "p", '"_c<Esc>p')
 
 -- Go to a certain buffer
 keymap.set("n", "gb", '<cmd>call buf_utils#GoToBuffer(v:count, "forward")<cr>', {
@@ -266,3 +267,9 @@ keymap.set('n', '<leader>gf', '<cmd>DiffviewFileHistory %<CR>', {desc = "Commit 
 keymap.set('n', '<leader>tf', '<cmd>Telescope find_files<CR>', {desc = "Telescope find"})
 keymap.set('n', '<leader>tg', '<cmd>Telescope live_grep<CR>', {desc = "Telescope grep"})
 
+-- Icon picker
+keymap.set('n', '<leader>in', '<cmd>IconPickerNormal<CR>', {desc = "Icon picker (normal)"})
+keymap.set('n', '<leader>iy', '<cmd>IconPickerYank<CR>', {desc = "Icon picker (yank)"})
+keymap.set('n', '<leader>ie', '<cmd>IconPickerNormal emoji<CR>', {desc = "Pick emoji"})
+-- Don't use <C-i>, <Tab> sends the same code as that
+keymap.set('i', '<M-i>', '<cmd>IconPickerInsert<CR>', {desc = "Icon picker (insert)"})
