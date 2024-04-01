@@ -18,7 +18,7 @@ dap.adapters.lldb = {
   -- install llvm or lldb package, depend on Debian/Arch
   -- e.g. pacman -S lldb
   command = '/usr/bin/lldb-vscode',
-  name = 'lldb',
+  name = 'lldb'
 }
 
 dap.adapters.python = function(cb, config)
@@ -29,20 +29,17 @@ dap.adapters.python = function(cb, config)
     local host = (config.connect or config).host or '127.0.0.1'
     cb({
       type = 'server',
-      port = assert(port, '`connect.port` is required for a python `attach` configuration'),
+      port = assert(port,
+                    '`connect.port` is required for a python `attach` configuration'),
       host = host,
-      options = {
-        source_filetype = 'python',
-      },
+      options = { source_filetype = 'python' }
     })
   else
     cb({
       type = 'executable',
       command = vim.g.python3_host_prog,
       args = { '-m', 'debugpy.adapter' },
-      options = {
-        source_filetype = 'python',
-      },
+      options = { source_filetype = 'python' }
     })
   end
 end
@@ -64,8 +61,8 @@ dap.configurations.cpp = {
     end,
     cwd = '${workspaceFolder}',
     stopOnEntry = false,
-    args = {},
-  },
+    args = {}
+  }
 }
 
 dap.configurations.c = {
@@ -76,8 +73,8 @@ dap.configurations.c = {
     program = prompt_program,
     cwd = '${workspaceFolder}',
     stopOnEntry = false,
-    args = {},
-  },
+    args = {}
+  }
 }
 
 dap.configurations.python = {
@@ -88,10 +85,8 @@ dap.configurations.python = {
     name = "Launch Python script (Conda base)",
     -- Options below are for debugpy, see https://github.com/microsoft/debugpy/wiki/debug-configuration-settings for supported options
     program = "${file}", -- This configuration will launch the current file if used.
-    python = function()
-      return vim.g.python3_host_prog
-    end,
-  },
+    python = function() return vim.g.python3_host_prog end
+  }
 }
 
 -- Shortcuts
@@ -99,8 +94,14 @@ local keymap = {
   d = {
     name = "DAP",
     R = { "<cmd>lua require'dap'.run_to_cursor()<cr>", "Run to Cursor" },
-    E = { "<cmd>lua require'dapui'.eval(vim.fn.input '[Expression] > ')<cr>", "Evaluate Input" },
-    C = { "<cmd>lua require'dap'.set_breakpoint(vim.fn.input '[Condition] > ')<cr>", "Conditional Breakpoint" },
+    E = {
+      "<cmd>lua require'dapui'.eval(vim.fn.input '[Expression] > ')<cr>",
+      "Evaluate Input"
+    },
+    C = {
+      "<cmd>lua require'dap'.set_breakpoint(vim.fn.input '[Condition] > ')<cr>",
+      "Conditional Breakpoint"
+    },
     U = { "<cmd>lua require'dapui'.toggle()<cr>", "Toggle UI" },
     b = { "<cmd>lua require'dap'.step_back()<cr>", "Step Back" },
     c = { "<cmd>lua require'dap'.continue()<cr>", "Continue" },
@@ -117,8 +118,8 @@ local keymap = {
     s = { "<cmd>lua require'dap'.continue()<cr>", "Start" },
     t = { "<cmd>lua require'dap'.toggle_breakpoint()<cr>", "Toggle Breakpoint" },
     x = { "<cmd>lua require'dap'.terminate()<cr>", "Terminate" },
-    u = { "<cmd>lua require'dap'.step_out()<cr>", "Step Out" },
-  },
+    u = { "<cmd>lua require'dap'.step_out()<cr>", "Step Out" }
+  }
 }
 local opts = {
   mode = "n",
@@ -126,14 +127,17 @@ local opts = {
   buffer = nil,
   silent = true,
   noremap = true,
-  nowait = false,
+  nowait = false
 }
 require("which-key").register(keymap, opts)
 
 -- Customize the icons
-vim.fn.sign_define('DapBreakpoint',         {text='🔴', texthl='', linehl='', numhl=''})
-vim.fn.sign_define('DapStopped',            {text='🟡', texthl='', linehl='', numhl=''})
-vim.fn.sign_define('DapBreakpointRejected', {text='❌', texthl='', linehl='', numhl=''})
+vim.fn.sign_define('DapBreakpoint',
+                   { text = '🔴', texthl = '', linehl = '', numhl = '' })
+vim.fn.sign_define('DapStopped',
+                   { text = '🟡', texthl = '', linehl = '', numhl = '' })
+vim.fn.sign_define('DapBreakpointRejected',
+                   { text = '❌', texthl = '', linehl = '', numhl = '' })
 
 -- Launch project-specific launch.json (VSCode like)
 dap_vscode = require('dap.ext.vscode')
