@@ -588,7 +588,10 @@ local plugin_specs = {
   },
   {
     "mfussenegger/nvim-dap",
-    dependencies = {"Joakker/lua-json5"}, -- need for dap.ext.vscode
+    dependencies = {
+      "Joakker/lua-json5",  -- needed for dap.ext.vscode
+      "nvim-telescope/telescope.nvim", -- run(config) from Telescope
+    },
     lazy = true,
     config = function()
       require("config.dap")
@@ -605,7 +608,7 @@ local plugin_specs = {
   {
     "rcarriga/nvim-dap-ui",
     event = { "VeryLazy" },
-    dependencies = {"mfussenegger/nvim-dap"},
+    dependencies = {"mfussenegger/nvim-dap", "nvim-neotest/nvim-nio"},
     config = function()
       require("config.dap-ui")
     end,
@@ -651,14 +654,19 @@ local plugin_specs = {
     opts = {
       modes = {
         search = {
+          -- disable flash on regular search by default, can toggle with <c-s>
           enabled = false,
         }
       }
     },
     keys = {
+      -- These mode character corresponds to mappings: imap, nmap, ...
+      -- n: Normal, o: Operator-pending, x: Visual, c: Command-line
       { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
       { "S", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
+      -- allow you yank something somewhere else with motion, and return back to original position
       { "r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
+      -- allow you search for some word, yank a treesitter node around it, and return back to original position
       { "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
       { "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
     },

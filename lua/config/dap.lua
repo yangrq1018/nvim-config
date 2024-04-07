@@ -1,15 +1,26 @@
 local dap = require('dap')
 
 -- Utilities
--- TODO: how to prompt for args gracefully?
-local prompt_program = function()
+local prompt_program_fn_input = function()
   local abs_path = vim.fn.getcwd() .. '/'
   return vim.fn.input('Path to executable: ', abs_path, 'file')
 end
 
-local prompt_args = function()
-  local args_string = vim.fn.input('Arguments: ')
-  return vim.split(args_string, " ")
+-- TODO: how to prompt for args gracefully?
+-- local prompt_args = function()
+--   local args_string = vim.fn.input('Arguments: ')
+--   return vim.split(args_string, " ")
+-- end
+
+-- prefill the prompt with current active xmake target executable path
+local prompt_xmake_exec = function()
+  local abs_path = vim.fn.getcwd() .. '/'
+  local xmake = require("xmake.project_config")
+  if xmake.info.tg ~= "" then
+    local exec_path = xmake.info.target.exec_path
+    abs_path = abs_path .. exec_path
+  end
+  return vim.fn.input('Path to executable: ', abs_path, 'file')
 end
 
 -- Adapters
@@ -45,20 +56,13 @@ dap.adapters.python = function(cb, config)
 end
 
 -- Configurations as DAP client
+-- TODO, default config factory
 dap.configurations.cpp = {
   {
     name = 'Launch CPP',
     type = 'lldb',
     request = 'launch',
-    program = function()
-      local abs_path = vim.fn.getcwd() .. '/'
-      local xmake = require("xmake.project_config")
-      if xmake.info.tg ~= "" then
-        local exec_path = xmake.info.target.exec_path
-        abs_path = abs_path .. exec_path
-      end
-      return vim.fn.input('Path to executable: ', abs_path, 'file')
-    end,
+    program = prompt_xmake_exec,
     cwd = '${workspaceFolder}',
     stopOnEntry = false,
     args = {}
@@ -70,7 +74,7 @@ dap.configurations.c = {
     name = 'Launch C',
     type = 'lldb',
     request = 'launch',
-    program = prompt_program,
+    program = prompt_program_fn_input,
     cwd = '${workspaceFolder}',
     stopOnEntry = false,
     args = {}
@@ -89,36 +93,83 @@ dap.configurations.python = {
   }
 }
 
+-- Return a default DAP configuration object for cpp debug to be used by dap.run
+local mkconfig_cpp = function()
+  return {
+    name = 'Launch CPP',
+    type = 'lldb',
+    request = 'launch',
+    program = "${file}",
+    cwd = '${workspaceFolder}',
+    stopOnEntry = false,
+    args = {}
+  }
+end
+
+local widgets = require'dap.ui.widgets'
+local actions = require('telescope.actions')
+local action_state = require('telescope.actions.state')
+
+local run_dap_cpp_cb = function(prompt_bufnr)
+  local config = mkconfig_cpp()
+  local selected_entry = action_state.get_selected_entry()
+  -- entry: {filename, index}
+  -- the filename is relative to cwd option
+  config.program = "./build/" .. selected_entry[1]
+  actions.close(prompt_bufnr) -- close telescope window
+  dap.run(config)
+end
+
+local run_dap_cpp_telescope = function()
+  require("telescope.builtin").find_files({
+    -- hidden = true,
+    cwd = "./build", -- search in build directory
+    find_command = { "fd", "--base-directory", "build", "-t", "x" },
+    attach_mappings = function(_, map)
+      -- while you type in the popup window, you are in INSERT
+      map("i", "<cr>", run_dap_cpp_cb)
+      map("n", "<cr>", run_dap_cpp_cb)
+      -- return true if want to map default_mappings for this picker
+      -- like <ESC> for quit
+      return true
+    end
+  })
+end
+
 -- Shortcuts
 local keymap = {
   d = {
     name = "DAP",
-    R = { "<cmd>lua require'dap'.run_to_cursor()<cr>", "Run to Cursor" },
+    -- UI related bindings
     E = {
       "<cmd>lua require'dapui'.eval(vim.fn.input '[Expression] > ')<cr>",
       "Evaluate Input"
     },
+    U = { "<cmd>lua require'dapui'.toggle()<cr>", "Toggle UI" },
+    e = { "<cmd>lua require'dapui'.eval()<cr>", "Evaluate" },
+
+    -- DAP functions
     C = {
       "<cmd>lua require'dap'.set_breakpoint(vim.fn.input '[Condition] > ')<cr>",
       "Conditional Breakpoint"
     },
-    U = { "<cmd>lua require'dapui'.toggle()<cr>", "Toggle UI" },
-    b = { "<cmd>lua require'dap'.step_back()<cr>", "Step Back" },
-    c = { "<cmd>lua require'dap'.continue()<cr>", "Continue" },
-    d = { "<cmd>lua require'dap'.disconnect()<cr>", "Disconnect" },
-    e = { "<cmd>lua require'dapui'.eval()<cr>", "Evaluate" },
-    g = { "<cmd>lua require'dap'.session()<cr>", "Get Session" },
-    h = { "<cmd>lua require'dap.ui.widgets'.hover()<cr>", "Hover Variables" },
-    S = { "<cmd>lua require'dap.ui.widgets'.scopes()<cr>", "Scopes" },
-    i = { "<cmd>lua require'dap'.step_into()<cr>", "Step Into" },
-    o = { "<cmd>lua require'dap'.step_over()<cr>", "Step Over" },
-    p = { "<cmd>lua require'dap'.pause.toggle()<cr>", "Pause" },
-    q = { "<cmd>lua require'dap'.close()<cr>", "Quit" },
-    r = { "<cmd>lua require'dap'.repl.toggle()<cr>", "Toggle Repl" },
-    s = { "<cmd>lua require'dap'.continue()<cr>", "Start" },
-    t = { "<cmd>lua require'dap'.toggle_breakpoint()<cr>", "Toggle Breakpoint" },
-    x = { "<cmd>lua require'dap'.terminate()<cr>", "Terminate" },
-    u = { "<cmd>lua require'dap'.step_out()<cr>", "Step Out" }
+    b = { dap.step_back, "Step Back" },
+    c = { dap.continue, "Continue" },
+    d = { dap.disconnect, "Disconnect" },
+    g = { dap.session, "Get Session" },
+    h = { widgets.hover, "Hover Variables" },
+    S = { function() widgets.centered_float(widgets.scopes) end, "Scopes in float window" },
+    i = { dap.step_into, "Step Into" },
+    o = { dap.step_over, "Step Over" },
+    p = { dap.pause, "Pause" },
+    q = { dap.close, "Quit" },
+    r = { dap.repl.toggle, "Toggle Repl" },
+    R = { dap.run_to_cursor, "Run to Cursor" },
+    T = { run_dap_cpp_telescope, 'Pick cpp configuration in Telescope' },
+    s = { dap.continue, "Start" },
+    t = { dap.toggle_breakpoint, "Toggle Breakpoint" },
+    x = { dap.terminate, "Terminate" },
+    u = { dap.step_out, "Step Out" }
   }
 }
 local opts = {
