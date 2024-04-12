@@ -400,6 +400,10 @@ function! s:wilder_init() abort
           \ ])
 
     let l:hl = wilder#make_hl('WilderAccent', 'Pmenu', [{}, {}, {'foreground': '#f4468f'}])
+    " apply_incsearch_fix actually is not needed, the highlight is correct.
+    " with 0 (disabled), it causes the existing highlights to flicker a little bit
+    " when typing search command for another pattern.
+    " with it set to 1, the matched part of the query string is incorrect.
     call wilder#set_option('renderer', wilder#popupmenu_renderer({
           \ 'highlighter': wilder#basic_highlighter(),
           \ 'max_height': 25,
@@ -408,7 +412,7 @@ function! s:wilder_init() abort
           \ },
           \ 'left': [' ', wilder#popupmenu_devicons(),],
           \ 'right': [' ', wilder#popupmenu_scrollbar(),],
-          \ 'apply_incsearch_fix': 1,
+          \ 'apply_incsearch_fix': 0,
           \ }))
   catch /^Vim\%((\a\+)\)\=:E117/
     echohl Error |echomsg "Wilder.nvim missing"| echohl None
