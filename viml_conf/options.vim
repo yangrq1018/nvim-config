@@ -80,8 +80,9 @@ set noshowmode
 
 set fileformats=unix,dos  " Fileformats to use for new files
 
-" Ask for confirmation when handling unsaved or read-only files
-set confirm
+" Control: confirmation when handling unsaved or read-only files
+" No dialog, just print error
+set noconfirm
 
 set visualbell noerrorbells  " Do not use visual and errorbells
 set history=500  " The number of command and search history to keep
@@ -179,3 +180,4 @@ set diffopt+=linematch:60
 set nowrap  " do no wrap
 set noruler
 
+set noshowcmd " do not show uncompleted command

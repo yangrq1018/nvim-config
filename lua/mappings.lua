@@ -68,6 +68,7 @@ keymap.set("n", "<space>O", "printf('m`%sO<ESC>``', v:count1)", {
 })
 
 -- Move the cursor based on physical lines, not the actual lines.
+-- This is helpful when you have lines wrapped, jump between wrapped parts.
 keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true })
 keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true })
 keymap.set("n", "^", "g^")
