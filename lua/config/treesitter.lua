@@ -1,8 +1,19 @@
 require("nvim-treesitter.configs").setup {
   ensure_installed = {
-    "python", "cpp", "lua", "vim", "json", "toml",
-    "vimdoc", "markdown", "bash", "go", "gomod",
-    "rasi" -- for rofi configuration
+    "python",
+    "cpp",
+    "lua",
+    "vim",
+    "json",
+    "toml",
+    "vimdoc",
+    "markdown",
+    "bash",
+    "go",
+    "gomod",
+    "rasi", -- for rofi configuration
+    -- "ninja", -- ninja build system
+    "html", -- hexo nunjucks templates
   },
   ignore_install = {}, -- List of parsers to ignore installing
   -- Modules
