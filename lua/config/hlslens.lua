@@ -4,7 +4,7 @@ local keymap = vim.keymap
 local hlslens = require("hlslens")
 
 hlslens.setup {
-  calm_down = true,
+  calm_down = false,
   nearest_only = true,
 }
 
@@ -47,3 +47,7 @@ keymap.set("n", "#", "", {
     hlslens.start()
   end,
 })
+
+-- highlight the nearest match
+-- override the default link group to 'IncSearch'
+api.nvim_set_hl(0, 'HlSearchNear', { link = 'CurSearch' })
