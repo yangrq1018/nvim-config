@@ -2,11 +2,6 @@ local utils = require("utils")
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 
--- util function
-function string:startswith(start)
-    return self:sub(1, #start) == start
-end
-
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system {
     "git",
