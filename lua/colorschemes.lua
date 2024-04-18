@@ -87,7 +87,8 @@ end
 M.catppuccin = function()
   require("catppuccin").setup({
     -- available option: latte, frappe, macchiato, mocha
-    flavour = "macchiato"
+    flavour = "macchiato",
+    no_italic = false, -- Force no italic (in comments mainly)
   })
 
   vim.cmd([[colorscheme catppuccin]])

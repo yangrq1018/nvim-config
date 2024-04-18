@@ -13,3 +13,5 @@ set foldmethod=expr foldexpr=utils#VimFolds(v:lnum) foldtext=utils#MyFoldText()
 set keywordprg=:help
 
 nnoremap <buffer><silent> <F9> :source %<CR>
+
+" Note: `tw` is set to 78, not here, in neovim's own runtime files

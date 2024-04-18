@@ -90,6 +90,9 @@ let g:Lf_WorkingDirectoryMode = 'a'
 nnoremap <silent> <leader>ff :<C-U>Leaderf file --popup<CR>
 
 " Grep project files in popup window
+" To search in hidden files/directories
+" either pass --hidden flag here, the flag will be passed to rg
+" or whitelist things in ignore files, rg will search them
 nnoremap <silent> <leader>fg :<C-U>Leaderf rg --no-messages --popup<CR>
 
 " Search vim help files
