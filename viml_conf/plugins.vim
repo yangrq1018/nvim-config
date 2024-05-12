@@ -87,7 +87,8 @@ let g:Lf_ShortcutB = ''
 let g:Lf_WorkingDirectoryMode = 'a'
 
 " Search files in popup window
-nnoremap <silent> <leader>ff :<C-U>Leaderf file --popup<CR>
+" what does <C-U> mean here??
+nnoremap <silent> <leader>ff :<C-U>Leaderf file --nameOnly --popup<CR>
 
 " Grep project files in popup window
 " To search in hidden files/directories
@@ -241,6 +242,10 @@ if executable('latex')
   " WARNING: the quickfix window has bugs, use :bn or :bp when the
   " quickfix window is open will case neovim to quit
   let g:vimtex_quickfix_open_on_warning = 0
+
+  " Change vimtex mapping prefix
+  " don't wanna use <localleader>
+  let g:vimtex_mappings_prefix = "<leader>l"
 
   " change aux_dir
   " keep -synctex=1 for forward search in viewer
