@@ -569,6 +569,9 @@ local plugin_specs = {
     dependencies = {'nvim-treesitter/nvim-treesitter'},
     opts = {
       toggle_comment = false,
+      switch = {
+        text = {"*.md", "*.tex"},
+      }
     },
   },
   {
