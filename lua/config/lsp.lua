@@ -85,7 +85,7 @@ local custom_attach = function(client, bufnr)
       hi! link LspReferenceWrite Visual
     ]])
 
-    local gid = api.nvim_create_augroup("lsp_document_highlight", { clear = true })
+    local gid = api.nvim_create_augroup("lsp_document_highlight", { clear = false })
     api.nvim_create_autocmd("CursorHold" , {
       group = gid,
       buffer = bufnr,
@@ -228,6 +228,7 @@ if utils.executable("bash-language-server") then
   }
 end
 
+-- pacman -S lua-language-server
 if utils.executable("lua-language-server") then
   -- settings for lua-language-server can be found on https://github.com/LuaLS/lua-language-server/wiki/Settings .
   lspconfig.lua_ls.setup {
