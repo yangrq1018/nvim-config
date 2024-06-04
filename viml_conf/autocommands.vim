@@ -69,7 +69,7 @@ function! s:custom_highlight() abort
   " For example, onedark_vivid has Cursor set to purple, but the
   " cursor is still gray on indent character.
 
-  " highlight Cursor cterm=bold gui=bold guibg=#00c918 guifg=black
+  highlight Cursor cterm=bold gui=bold guibg=#00c918 guifg=black
   highlight Cursor2 guifg=red guibg=red
 
   " To fix that cursor highlight is overriden by ibl, one way is to
@@ -120,6 +120,13 @@ augroup END
 
 " ref: https://vi.stackexchange.com/a/169/15292
 function! s:handle_large_file() abort
+  " skip setting things for help files
+  " should not set relativenumber here, help files do not have line number
+  " columns enabled.
+  if &buftype ==# 'help'
+    return
+  endif
+
   let g:large_file = 10485760 " 10MB
   let f = expand("<afile>")
 
