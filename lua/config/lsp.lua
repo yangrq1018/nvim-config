@@ -233,6 +233,9 @@ if utils.executable("lua-language-server") then
   -- settings for lua-language-server can be found on https://github.com/LuaLS/lua-language-server/wiki/Settings .
   lspconfig.lua_ls.setup {
     on_attach = custom_attach,
+    flags = {
+      debounce_text_changes = 1000, -- in milliseconds
+    },
     settings = {
       Lua = {
         runtime = {
