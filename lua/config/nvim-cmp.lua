@@ -29,7 +29,7 @@ cmp.setup {
         fallback()
       end
     end,
-    ["<CR>"] = cmp.mapping.confirm { select = true },
+    -- ["<CR>"] = cmp.mapping.confirm { select = true },
     ["<C-e>"] = cmp.mapping.abort(),
     ["<Esc>"] = cmp.mapping.close(),
     ["<C-d>"] = cmp.mapping.scroll_docs(-4),
@@ -39,13 +39,14 @@ cmp.setup {
     { name = "nvim_lsp" }, -- For nvim-lsp
     { name = "ultisnips" }, -- For ultisnips user.
     { name = "path" }, -- for path completion
-    { name = "buffer", keyword_length = 3 }, -- for buffer word completion
-    { name = "emoji", insert = true }, -- emoji completion
+    -- { name = "buffer", keyword_length = 3 }, -- for buffer word completion
+    -- { name = "emoji", insert = true }, -- emoji completion
   },
   completion = {
     keyword_length = 1,
-    -- removed 'noselect', the first entry is always focused and doc shown
-    completeopt = "menu",
+    -- if remove 'noselect', the first entry is always focused and doc shown
+    -- with 'noselect', you need to use TAB to explicitly select the first entry
+    completeopt = "menu,noselect",
   },
   -- disable source preselect request (gopls)
   preselect = cmp.PreselectMode.None,
