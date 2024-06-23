@@ -89,6 +89,9 @@ M.catppuccin = function()
     -- available option: latte, frappe, macchiato, mocha
     flavour = "macchiato",
     no_italic = false, -- Force no italic (in comments mainly)
+    styles = {
+      conditionals = {},
+    }
   })
 
   vim.cmd([[colorscheme catppuccin]])
