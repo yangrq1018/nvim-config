@@ -162,7 +162,9 @@ set termguicolors
 " https://github.com/neovim/neovim/wiki/FAQ#how-to-change-cursor-color-in-the-terminal
 set guicursor=n-v-c:block-Cursor/lCursor,i-ci-ve:ver25-Cursor2/lCursor2,r-cr:hor20,o:hor20
 
-set signcolumn=yes:1
+" Make sign column wider, so diagnostics icons do not overlap with line
+" numbers.
+set signcolumn=yes:2
 
 " Remove certain character from file name pattern matching
 set isfname-==
