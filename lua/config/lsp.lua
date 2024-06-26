@@ -114,21 +114,21 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities()
 local lspconfig = require("lspconfig")
 
 if utils.executable("pylsp") or utils.is_non_base_conda_env() then
-  local py_path = nil
   -- decide which python executable to use for mypy
-  py_path = vim.g.python3_host_prog
+  local py_path = vim.g.python3_host_prog
 
-  local pylsp_path = nil
-  if utils.executable("pylsp") then
-    pylsp_path = "pylsp"
-  else
-    -- conda virtual environment normally does't have pylsp_path, so point to the base env's
-    -- TODO: this is a bit too hardcode
+  -- Conda environments normally do not have pylsp installed.
+  -- Assume an Anaconda base environment is available for the user,
+  -- use the executables in the base env when other envs are activated.
+  -- TODO: this is a bit too hardcoded
+
+  local pylsp_path = "pylsp"
+  if not utils.executable("pylsp") then
     pylsp_path = os.getenv("HOME") .. "/anaconda3/bin/pylsp"
   end
 
   lspconfig.pylsp.setup {
-    cmd = {pylsp_path},
+    cmd = { pylsp_path },
     on_attach = custom_attach,
     settings = {
       pylsp = {
@@ -271,10 +271,11 @@ if utils.executable("gopls") then
 end
 
 -- Change diagnostic signs.
-fn.sign_define("DiagnosticSignError", { text = '🆇', texthl = "DiagnosticSignError" })
-fn.sign_define("DiagnosticSignWarn", { text = '⚠️', texthl = "DiagnosticSignWarn" })
-fn.sign_define("DiagnosticSignInfo", { text = 'ℹ️', texthl = "DiagnosticSignInfo" })
-fn.sign_define("DiagnosticSignHint", { text = '', texthl = "DiagnosticSignHint" })
+-- I will keep the default signs, because fancy icons will mess up line numbers.
+-- fn.sign_define("DiagnosticSignError", { text = '', texthl = "DiagnosticSignError" })
+-- fn.sign_define("DiagnosticSignWarn", { text = '', texthl = "DiagnosticSignWarn" })
+-- fn.sign_define("DiagnosticSignInfo", { text = '', texthl = "DiagnosticSignInfo" })
+-- fn.sign_define("DiagnosticSignHint", { text = '', texthl = "DiagnosticSignHint" })
 
 -- global config for diagnostic
 diagnostic.config {
