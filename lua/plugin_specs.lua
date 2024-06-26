@@ -132,7 +132,18 @@ local plugin_specs = {
   { "EdenEast/nightfox.nvim", lazy = true },
   { "rebelot/kanagawa.nvim", lazy = true },
   { "catppuccin/nvim", name = "catppuccin", lazy = true },
-  { "yangrq1018/onedarkpro.nvim", lazy = true },
+  {
+    "yangrq1018/onedarkpro.nvim", lazy = true, config = function()
+      require("onedarkpro").setup({
+        options = {
+          -- need to explicitly set cursorline to true, else highlight group
+          -- background color is the same as editor bg (#282c34). The real
+          -- color should be #2e333c.
+          cursorline = true,
+        }
+      })
+    end
+  },
   { "tanvirtin/monokai.nvim", lazy = true },
   { "marko-cerovac/material.nvim", lazy = true },
 
