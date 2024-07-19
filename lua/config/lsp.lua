@@ -150,7 +150,8 @@ if utils.executable("pylsp") or utils.is_non_base_conda_env() then
             live_mode = false
           },
           -- auto-completion options
-          jedi_completion = { fuzzy = true },
+          -- disable fuzzy as it causes some functions not to show parameters in nvim-cmp.
+          -- jedi_completion = { fuzzy = true },
           -- import sorting
           isort = { enabled = true },
         },
