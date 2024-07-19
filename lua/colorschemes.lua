@@ -136,4 +136,4 @@ end
 -- M.rand_colorscheme()
 
 -- Or pick a fixed one
-M.catppuccin()
+M.onedarkpro()
