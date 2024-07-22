@@ -133,7 +133,9 @@ local plugin_specs = {
   { "rebelot/kanagawa.nvim", lazy = true },
   { "catppuccin/nvim", name = "catppuccin", lazy = true },
   {
-    "yangrq1018/onedarkpro.nvim", lazy = true, config = function()
+    "yangrq1018/onedarkpro.nvim",
+    lazy = true,
+    config = function()
       require("onedarkpro").setup({
         options = {
           -- need to explicitly set cursorline to true, else highlight group
@@ -550,6 +552,21 @@ local plugin_specs = {
         replace_keycodes = false,
       })
     end,
+  },
+  -- Github Copilot Chat
+  {
+    "CopilotC-Nvim/CopilotChat.nvim",
+    branch = "canary",
+    dependencies = {
+      -- { "zbirenbaum/copilot.lua" }, -- or github/copilot.vim
+      { "github/copilot.vim" },
+      { "nvim-lua/plenary.nvim" }, -- for curl, log wrapper
+    },
+    opts = {
+      debug = false, -- Enable debugging
+      -- See Configuration section for rest
+    },
+    -- See Commands section for default commands if you want to lazy load on them
   },
   -- REPL and Jupyter Notebook alternative for vim
   {
