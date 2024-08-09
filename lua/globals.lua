@@ -27,14 +27,11 @@ vim.g.did_install_default_menus = 1  -- do not load menu
 
 if utils.executable('python3') then
   if vim.g.is_win then
-    vim.g.python3_host_prog = fn.substitute(fn.exepath("python"), ".exe$", '', 'g')
+    vim.g.python3_host_prog = fn.substitute(fn.exepath("python3"), ".exe$", '', 'g')
   else
-    vim.g.python3_host_prog = fn.exepath("python")
-    if utils.get_conda_prefix() ~= '' then
-      -- this always point to the base environment
-      -- modify this if necessary (your anaconda install path is different)
-      vim.g.python3_host_prog = os.getenv("HOME") .. "/anaconda3/bin/python"
-    end
+    -- vim.g.python3_host_prog = fn.exepath("python3")
+    -- Conda base has pynvim installed, hardcode the interpreter path to it
+    vim.g.python3_host_prog = os.getenv("HOME") .. "/anaconda3/bin/python"
   end
 else
   api.nvim_err_writeln("Python3 executable not found! You must install Python3 and set its PATH correctly!")
