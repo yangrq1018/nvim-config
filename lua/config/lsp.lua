@@ -270,9 +270,10 @@ end
 -- global config for diagnostic
 diagnostic.config {
   underline = false,
-  virtual_text = false,
+  virtual_text = true,
   signs = true,
   severity_sort = true,
+  float = true,
 }
 
 -- lsp.handlers["textDocument/publishDiagnostics"] = lsp.with(lsp.diagnostic.on_publish_diagnostics, {
