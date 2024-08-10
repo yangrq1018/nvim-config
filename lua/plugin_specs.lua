@@ -564,7 +564,10 @@ local plugin_specs = {
     },
     opts = {
       debug = false, -- Enable debugging
-      -- See Configuration section for rest
+      show_help = false,
+      window = {
+        layout = "horizontal",
+      }
     },
     -- See Commands section for default commands if you want to lazy load on them
   },
