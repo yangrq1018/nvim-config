@@ -30,8 +30,9 @@ if utils.executable('python3') then
     vim.g.python3_host_prog = fn.substitute(fn.exepath("python3"), ".exe$", '', 'g')
   else
     -- vim.g.python3_host_prog = fn.exepath("python3")
-    -- Conda base has pynvim installed, hardcode the interpreter path to it
-    vim.g.python3_host_prog = os.getenv("HOME") .. "/anaconda3/bin/python"
+    -- conda env py3nvim has pynvim, pylsp, pylint installed
+    -- hardcode the interpreter path to it
+    vim.g.python3_host_prog = os.getenv("HOME") .. "/anaconda3/envs/py3nvim/bin/python"
   end
 else
   api.nvim_err_writeln("Python3 executable not found! You must install Python3 and set its PATH correctly!")

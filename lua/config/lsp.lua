@@ -116,8 +116,9 @@ local lspconfig = require("lspconfig")
 -- decide which python executable to use for mypy
 local py_path = vim.g.python3_host_prog
 
--- virtualenvs normally do not have pylsp installed.
-local pylsp_path = os.getenv("HOME") .. "/anaconda3/bin/pylsp"
+-- virtualenvs normally do not have pylsp installed
+-- hardcode the path to pylsp
+local pylsp_path = os.getenv("HOME") .. "/anaconda3/envs/py3nvim/bin/pylsp"
 
 lspconfig.pylsp.setup {
   cmd = { pylsp_path },
