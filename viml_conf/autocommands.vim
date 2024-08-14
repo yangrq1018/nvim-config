@@ -147,11 +147,13 @@ augroup END
 
 autocmd FileType git set foldmethod=syntax
 
-" Python library read-only view
+" Python packages read-only view
+" useful when reading the source code of a package
 augroup nomod_python_library
   autocmd!
-  autocmd BufReadPost,BufNewFile ~/anaconda3/lib/python3.11/* setlocal noma
-  autocmd BufReadPost,BufNewFile ~/anaconda3/envs/hikyuu/lib/python3.9/* setlocal noma
+  autocmd BufReadPost,BufNewFile ~/anaconda3/lib/python*/*.py setlocal noma
+  autocmd BufReadPost,BufNewFile ~/anaconda3/envs/*/lib/python*/*.py setlocal noma
+  autocmd BufReadPost,BufNewFile ~/.cache/pypoetry/virtualenvs/*/lib/python*/*.py setlocal noma
 augroup END
 
 " Load auto-command defined in Lua
