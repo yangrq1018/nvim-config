@@ -431,13 +431,12 @@ endfunction
 " enable AutoSave on Vim startup
 let g:auto_save = 1
 
-" let g:auto_save_events = ["InsertLeave", "TextChanged"]
+let g:auto_save_events = []
 " Disable all events.
 " Problem 1: save on InsertLeave sometimes resets the cursor column position.
 " This can be annoying if you type fast.
 " Problem 2: with save on TextChanged, editing xmake.lua in normal mode
-" refreshes intellisense too quick.
-let g:auto_save_events = []
+" refreshes intellisense too quickly.
 
 """"""""""""""""""""""""""""""auto-pairs settings""""""""""""""""""""""""""""""
 let g:AutoPairsCenterLine = 0

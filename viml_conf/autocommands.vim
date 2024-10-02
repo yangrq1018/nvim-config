@@ -154,6 +154,7 @@ augroup nomod_python_library
   autocmd BufReadPost,BufNewFile ~/anaconda3/lib/python*/*.py setlocal noma
   autocmd BufReadPost,BufNewFile ~/anaconda3/envs/*/lib/python*/*.py setlocal noma
   autocmd BufReadPost,BufNewFile ~/.cache/pypoetry/virtualenvs/*/lib/python*/*.py setlocal noma
+  autocmd BufReadPost,BufNewFile iFinDPy.py setlocal noma
 augroup END
 
 " Load auto-command defined in Lua
