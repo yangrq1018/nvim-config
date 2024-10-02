@@ -274,3 +274,6 @@ keymap.set('n', '<leader>iy', '<cmd>IconPickerYank<CR>', {desc = "Icon picker (y
 keymap.set('n', '<leader>ie', '<cmd>IconPickerNormal emoji<CR>', {desc = "Pick emoji"})
 -- Don't use <C-i>, <Tab> sends the same code as that
 keymap.set('i', '<M-i>', '<cmd>IconPickerInsert<CR>', {desc = "Icon picker (insert)"})
+
+-- CopilotChat
+keymap.set('n', '<leader>cc', '<cmd>CopilotChat<CR>', {desc = "Toggle Copilot Chat"})
