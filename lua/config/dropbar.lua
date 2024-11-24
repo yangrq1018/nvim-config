@@ -14,7 +14,7 @@ local enable = function(buf, win, _)
 end
 
 require('dropbar').setup({
-  general = {
+  bar = {
     attach_events = {
       -- Remove these two as they causes error sometimes when window appears (or just for no reason)
       -- The default values are 'BufWinEnter', 'BufWritePost'
