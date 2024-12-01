@@ -8,6 +8,9 @@ cmp.setup {
     -- disable cmp in comment
     return not context.in_treesitter_capture('comment')
   end,
+  matching = {
+    disallow_fuzzy_matching = true,
+  },
   snippet = {
     expand = function(args)
       -- For `ultisnips` user.
