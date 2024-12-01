@@ -64,7 +64,7 @@ endif
 "                             config for neovide                             "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if exists("g:neovide")
-  set guifont=JetBrainsMono\ NF:h12
+  set guifont=JetBrainsMono\ NF:h13
   let g:neovide_transparency = 1.0
   let g:neovide_cursor_animation_length = 0.1
   let g:neovide_cursor_trail_size=0.3
