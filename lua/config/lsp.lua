@@ -271,7 +271,7 @@ end
 -- global config for diagnostic
 diagnostic.config {
   underline = false,
-  virtual_text = true,
+  virtual_text = false,
   signs = true,
   severity_sort = true,
   float = true,
