@@ -37,6 +37,12 @@ local black = function()
   }
 end
 
+local sql_formatter = function()
+  return {
+    exe = "sql-formatter",
+    stdin = true,
+  }
+end
 
 -- Provides the Format, FormatWrite, FormatLock, and FormatWriteLock commands
 require("formatter").setup {
@@ -61,5 +67,6 @@ require("formatter").setup {
     json5 = { js_beautify },
     go = { gofmt },
     python = { black },
+    sql = { sql_formatter },
   }
 }
