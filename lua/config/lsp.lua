@@ -116,45 +116,48 @@ local lspconfig = require("lspconfig")
 -- decide which python executable to use for mypy
 local py_path = vim.g.python3_host_prog
 
--- virtualenvs normally do not have pylsp installed
--- hardcode the path to pylsp
-local pylsp_path = os.getenv("HOME") .. "/anaconda3/envs/py3nvim/bin/pylsp"
+-- point to a pylsp executable (normally in a virtualenv)
+local pylsp_path = fn.substitute(py_path, "/python$", "/pylsp", "g")
 
-lspconfig.pylsp.setup {
-  cmd = { pylsp_path },
-  on_attach = custom_attach,
-  settings = {
-    pylsp = {
-      plugins = {
-        -- formatter options
-        black = { enabled = true },
-        autopep8 = { enabled = false },
-        yapf = { enabled = false },
-        -- linter options
-        pylint = { enabled = true, executable = "pylint" },
-        ruff = { enabled = false },
-        pyflakes = { enabled = false },
-        pycodestyle = { enabled = false },
-        -- type checker
-        pylsp_mypy = {
-          enabled = true,
-          overrides = { "--python-executable", py_path, true },
-          report_progress = true,
-          live_mode = false
+if utils.executable(pylsp_path) then
+  lspconfig.pylsp.setup {
+    cmd = { pylsp_path },
+    on_attach = custom_attach,
+    settings = {
+      pylsp = {
+        plugins = {
+          -- formatter options
+          black = { enabled = true },
+          autopep8 = { enabled = false },
+          yapf = { enabled = false },
+          -- linter options
+          pylint = { enabled = true, executable = "pylint" },
+          ruff = { enabled = false },
+          pyflakes = { enabled = false },
+          pycodestyle = { enabled = false },
+          -- type checker
+          pylsp_mypy = {
+            enabled = true,
+            overrides = { "--python-executable", py_path, true },
+            report_progress = true,
+            live_mode = false
+          },
+          -- auto-completion options
+          -- disable fuzzy as it causes some functions not to show parameters in nvim-cmp.
+          -- jedi_completion = { fuzzy = true },
+          -- import sorting
+          isort = { enabled = true },
         },
-        -- auto-completion options
-        -- disable fuzzy as it causes some functions not to show parameters in nvim-cmp.
-        -- jedi_completion = { fuzzy = true },
-        -- import sorting
-        isort = { enabled = true },
       },
     },
-  },
-  flags = {
-    debounce_text_changes = 200,
-  },
-  capabilities = capabilities,
-}
+    flags = {
+      debounce_text_changes = 200,
+    },
+    capabilities = capabilities,
+  }
+else
+  vim.notify("pylsp not found!", vim.log.levels.WARN, { title = "Nvim-config" })
+end
 
 -- if utils.executable('pyright') then
 --   lspconfig.pyright.setup{
