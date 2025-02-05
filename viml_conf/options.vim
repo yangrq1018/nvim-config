@@ -116,7 +116,8 @@ set shortmess+=S
 set shortmess+=I
 
 " Completion behaviour
-" set completeopt+=noinsert  " Auto select the first completion entry
+set completeopt+=noinsert  " Auto select the first completion entry
+set completeopt+=popup
 set completeopt+=menuone  " Show menu even if there is only one item
 set completeopt-=preview  " Disable the preview window
 
