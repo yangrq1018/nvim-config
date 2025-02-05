@@ -193,10 +193,10 @@ require("lualine").setup {
       -- "progress",
     },
     lualine_z = {
-      {
-        trailing_space,
-        color = "WarningMsg",
-      },
+      -- {
+      --   trailing_space,
+      --   color = "WarningMsg",
+      -- },
       {
         mixed_indent,
         color = "WarningMsg",
