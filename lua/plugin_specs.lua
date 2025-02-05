@@ -556,7 +556,7 @@ local plugin_specs = {
   -- Github Copilot Chat
   {
     "CopilotC-Nvim/CopilotChat.nvim",
-    branch = "canary",
+    branch = "main",
     dependencies = {
       -- { "zbirenbaum/copilot.lua" }, -- or github/copilot.vim
       { "github/copilot.vim" },
