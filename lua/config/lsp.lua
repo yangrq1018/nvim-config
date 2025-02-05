@@ -210,8 +210,8 @@ if utils.executable("vim-language-server") then
     },
     capabilities = capabilities,
   }
-else
-  vim.notify("vim-language-server not found!", vim.log.levels.WARN, { title = "Nvim-config" })
+-- else
+--   vim.notify("vim-language-server not found!", vim.log.levels.WARN, { title = "Nvim-config" })
 end
 
 -- set up bash-language-server
