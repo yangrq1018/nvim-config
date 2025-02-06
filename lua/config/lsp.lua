@@ -105,7 +105,7 @@ local custom_attach = function(client, bufnr)
 
   if vim.g.logging_level == "debug" then
     local msg = string.format("Language server %s started!", client.name)
-    vim.notify(msg, vim.log.levels.DEBUG, { title = "Nvim-config" })
+    vim.notify(msg, vim.log.levels.DEBUG, { title = "Nvim-config [LSP]" })
   end
 end
 
@@ -156,7 +156,7 @@ if utils.executable(pylsp_path) then
     capabilities = capabilities,
   }
 else
-  vim.notify("pylsp not found!", vim.log.levels.WARN, { title = "Nvim-config" })
+  vim.notify("pylsp not found, python LSP support will be disabled", vim.log.levels.INFO, { title = "Nvim-config [LSP]" })
 end
 
 if utils.executable("ltex-ls") then
@@ -201,8 +201,8 @@ if utils.executable("vim-language-server") then
     },
     capabilities = capabilities,
   }
--- else
---   vim.notify("vim-language-server not found!", vim.log.levels.WARN, { title = "Nvim-config" })
+else
+  vim.notify("vim-language-server not found, vim LSP support will be disabled", vim.log.levels.INFO, { title = "Nvim-config [LSP]" })
 end
 
 -- set up bash-language-server
