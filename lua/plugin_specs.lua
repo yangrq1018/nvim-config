@@ -504,7 +504,6 @@ local plugin_specs = {
   {
     "j-hui/fidget.nvim",
     event = "VeryLazy",
-    tag = "legacy",
     config = function()
       require("config.fidget-nvim")
     end,
@@ -748,6 +747,10 @@ local plugin_specs = {
       toggle_key = '<M-x>',
     },
     config = function(_, opts) require'lsp_signature'.setup(opts) end
+  },
+  {
+    "sphamba/smear-cursor.nvim",
+    opts = {},
   }
 }
 

@@ -176,6 +176,10 @@ keymap.set("n", "gB", '<cmd>call buf_utils#GoToBuffer(v:count, "backward")<cr>',
   desc = "go to buffer (backward)",
 })
 
+-- Go to next/previous tab
+keymap.set("n", "gt", "<cmd>tabnext<cr>", { desc = "go to tab (forward)" })
+keymap.set("n", "gT", "<cmd>tabprevious<cr>", { desc = "go to tab (backward)" })
+
 -- Switch windows
 keymap.set("n", "<left>", "<c-w>h")
 keymap.set("n", "<Right>", "<C-W>l")
