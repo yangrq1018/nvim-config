@@ -2,7 +2,6 @@ local keymap = vim.keymap
 local api = vim.api
 local uv = vim.loop
 
-require("autocommit")
 
 -- Save key strokes (now we do not need to press shift to enter command mode).
 -- keymap.set({ "n", "x" }, ";", ":")
@@ -252,9 +251,6 @@ end)
 
 -- ToggleTerm select from terminals
 keymap.set("n", "<leader>ts", "<cmd>TermSelect<cr>")
-
--- Remap ":" to FineCmdLine
-keymap.set('n', '<CR>', '<cmd>FineCmdline<CR>', {noremap = true})
 
 -- Lazygit
 keymap.set('n', '<leader>lg', '<cmd>LazyGit<CR>', {noremap = true, desc = "Open LazyGit"})

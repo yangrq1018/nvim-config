@@ -519,8 +519,7 @@ local plugin_specs = {
   },
   -- Xmake build tool
   {
-    'yangrq1018/xmake.nvim',
-    lazy = true,
+    'Mythos-404/xmake.nvim',
     event = "BufReadPost xmake.lua",
     config = function()
       require("config.xmake")
@@ -605,8 +604,18 @@ local plugin_specs = {
     },
   },
   {
+    "yangrq1018/gptcommit",
+    event = "VeryLazy",
+    opts = {},
+  },
+  {
     'VonHeikemen/fine-cmdline.nvim',
-    dependencies = {"MunifTanjim/nui.nvim"}
+    dependencies = {"MunifTanjim/nui.nvim"},
+    config = function()
+      require("fine-cmdline").setup()
+      -- Remap CTRL+P to :FineCmdline
+      vim.keymap.set('n', '<C-p>', '<cmd>FineCmdline<CR>', { noremap = true, silent = true })
+    end,
   },
   {
     "kdheepak/lazygit.nvim",
