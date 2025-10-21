@@ -10,16 +10,6 @@ local js_beautify = function()
   }
 end
 
-local clang_format = function()
-  return {
-    exe = "clang-format",
-    args = {
-      '--style="{IndentWidth: 4}"',
-    },
-    stdin = true
-  }
-end
-
 -- You might want .go files to have `expandtab`, that's possible
 -- with gofmt, which mandates tabs instead of spaces.
 local gofmt = function()
@@ -59,8 +49,8 @@ require("formatter").setup {
         return f
       end
     },
-    c = { clang_format },
-    cpp = { clang_format },
+    c = { require("formatter.filetypes.cpp").clangformat },
+    cpp = { require("formatter.filetypes.cpp").clangformat },
     -- json and json5 filetypes
     json = { js_beautify },
     jsonc = { js_beautify },

@@ -196,6 +196,7 @@ local plugin_specs = {
   {
     "rcarriga/nvim-notify",
     event = "VeryLazy",
+    enabled = false,
     config = function()
       require("config.nvim-notify")
     end,
@@ -605,6 +606,7 @@ local plugin_specs = {
   },
   {
     "yangrq1018/gptcommit",
+    cmd = {"GptCommit"},
     event = "VeryLazy",
     opts = {},
   },
@@ -759,6 +761,7 @@ local plugin_specs = {
   },
   {
     "sphamba/smear-cursor.nvim",
+    enabled = false,
     opts = {},
   }
 }

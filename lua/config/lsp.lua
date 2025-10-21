@@ -28,6 +28,7 @@ local custom_attach = function(client, bufnr)
   end
 
   map("n", "gd", vim.lsp.buf.definition, { desc = "go to definition" })
+  map("n", "gl", vim.lsp.buf.declaration, { desc = "go to declaration" })
   map("n", "<C-]>", vim.lsp.buf.definition)
   map("n", "K", vim.lsp.buf.hover)
   map("n", "<C-k>", vim.lsp.buf.signature_help)
@@ -55,11 +56,11 @@ local custom_attach = function(client, bufnr)
     buffer = bufnr,
     callback = function()
       local float_opts = {
-        focusable = false,
+        focusable = true,
         close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
-        border = "rounded",
+        -- border = "rounded",
         source = "always", -- show source in diagnostic popup window
-        prefix = " ",
+        -- prefix = " ",
       }
 
       if not vim.b.diagnostics_pos then
@@ -217,7 +218,14 @@ end
 if utils.executable("lua-language-server") then
   -- settings for lua-language-server can be found on https://github.com/LuaLS/lua-language-server/wiki/Settings .
   lspconfig.lua_ls.setup {
-    on_attach = custom_attach,
+    on_attach = function(client, bufnr)
+      -- skip if the buffer's name is `xmake.lua`
+      if vim.fn.fnamemodify(vim.api.nvim_buf_get_name(bufnr), ":t") == "xmake.lua" then
+        vim.diagnostic.enable(false, { bufnr = 0 })
+        return
+      end
+      custom_attach(client, bufnr)
+    end,
     flags = {
       debounce_text_changes = 1000, -- in milliseconds
     },
@@ -270,6 +278,14 @@ diagnostic.config {
   severity_sort = true,
   float = true,
 }
+
+-- disable diagnostics for xmake.lua
+-- vim.api.nvim_create_autocmd("BufReadPost", {
+--   pattern = "xmake.lua",
+--   callback = function()
+--     vim.diagnostic.enable(false, { bufnr = 0 })
+--   end,
+-- })
 
 -- lsp.handlers["textDocument/publishDiagnostics"] = lsp.with(lsp.diagnostic.on_publish_diagnostics, {
 --   underline = false,
